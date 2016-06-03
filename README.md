@@ -5,9 +5,16 @@ ribge R package
 [R](https://www.r-project.org/) package for (down)loading data from [IBGE](http://www.ibge.gov.br/) (Instituto Brasileiro de Geografia e Estatística)
 
 For now, only (down)loads yearly population estimation for municipalities. See:
-[Estimativas de População - 2015 - DOU](http://www.ibge.gov.br/home/estatistica/populacao/estimativa2015/estimativa_dou.shtm),
-[estatísticas/Estimativas de Populacao](http://downloads.ibge.gov.br/downloads_estatisticas.htm?caminho=/Estimativas_de_Populacao/),
+[Estimativas de População - 2015 - DOU](http://www.ibge.gov.br/home/estatistica/populacao/estimativa2015/estimativa_dou.shtm) &
+[estatísticas/Estimativas de Populacao](http://downloads.ibge.gov.br/downloads_estatisticas.htm?caminho=/Estimativas_de_Populacao/)
 
+install
+-----
+
+```
+# install.packages("devtools")
+devtools::install_github("tbrugz/ribge")
+```
 
 usage examples
 -----

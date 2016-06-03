@@ -19,7 +19,7 @@ links_dou <- c(
   '/Estimativas_2015/estimativa_dou_2015_20150915.xls'
 )
 #skip_dou <- c(4,4,NA,NA,NA,NA,NA,NA)
-df.links <- data_frame(anos, links_dou)
+df.links <- dplyr::data_frame(anos, links_dou)
 link_prepend <- 'ftp://ftp.ibge.gov.br/Estimativas_de_Populacao'
 
 # ...
@@ -38,10 +38,10 @@ ibge.load.df <- function(filename, skip=2) {
   }
   sheet <- excel_sheets(filename)
   if(length(sheet)>1) {
-    sheet <- str_extract(sheet, ".*(Munic|MUNIC).*")
+    sheet <- stringr::str_extract(sheet, ".*(Munic|MUNIC).*")
     sheet <- sheets[!is.na(sheet)]
   }
-  df <- read_excel(filename, sheet=sheet, skip=skip)
+  df <- readxl::read_excel(filename, sheet=sheet, skip=skip)
   names(df)<-c("uf","codigo_uf","codigo_munic","nome_munic","populacao")
   return(df[!is.na(df$codigo_uf),])
   #return(read_excel(filename, sheet=2, skip=2))
