@@ -25,7 +25,7 @@ link_prepend <- 'ftp://ftp.ibge.gov.br/Estimativas_de_Populacao'
 # ...
 ibge.download.populacao.estimativa <- function(ano, dir="") {
   url<- df.links[anos==ano,]$links_dou
-  filename<- unlist( str_split(url, "/") )[3]
+  filename<- unlist( stringr::str_split(url, "/") )[3]
   filename_download<- paste0(dir, filename)
   download.file(paste0(link_prepend, url), filename_download)
   return(filename_download)
@@ -33,10 +33,10 @@ ibge.download.populacao.estimativa <- function(ano, dir="") {
 
 # ...
 ibge.load.df <- function(filename, skip=2) {
-  if(str_detect(filename, "zip$")) {
+  if(stringr::str_detect(filename, "zip$")) {
     filename<-unzip(filename)
   }
-  sheet <- excel_sheets(filename)
+  sheet <- readxl::excel_sheets(filename)
   if(length(sheet)>1) {
     sheet <- stringr::str_extract(sheet, ".*(Munic|MUNIC).*")
     sheet <- sheets[!is.na(sheet)]
