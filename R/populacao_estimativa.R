@@ -39,7 +39,7 @@ ibge.load.df <- function(filename, skip=2) {
   sheet <- readxl::excel_sheets(filename)
   if(length(sheet)>1) {
     sheet <- stringr::str_extract(sheet, ".*(Munic|MUNIC).*")
-    sheet <- sheets[!is.na(sheet)]
+    sheet <- sheet[!is.na(sheet)]
   }
   df <- readxl::read_excel(filename, sheet=sheet, skip=skip)
   names(df)<-c("uf","codigo_uf","codigo_munic","nome_munic","populacao")
