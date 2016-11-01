@@ -8,6 +8,8 @@ For now, only (down)loads yearly population estimation for municipalities. See:
 [Estimativas de População - 2015 - DOU](http://www.ibge.gov.br/home/estatistica/populacao/estimativa2015/estimativa_dou.shtm) &
 [estatísticas/Estimativas de Populacao](http://downloads.ibge.gov.br/downloads_estatisticas.htm?caminho=/Estimativas_de_Populacao/)
 
+2010 Census data gathered from: http://www.sidra.ibge.gov.br/bda/tabela/listabl.asp?z=t&o=25&i=P&c=1378
+
 install
 -----
 
@@ -19,27 +21,41 @@ devtools::install_github("tbrugz/ribge")
 usage examples
 -----
 
+main usage:
+
+```
+df2008 <- ibge.load.populacao(2008)
+df2009 <- ibge.load.populacao(2009)
+df2010 <- ibge.load.populacao(2010)
+df2011 <- ibge.load.populacao(2011)
+# ...
+df2015 <- ibge.load.populacao(2015)
+
+```
+
+old way:
+
 ```
 f2008 <- ibge.download.populacao.estimativa(2008)
-df2008 <- ibge.load.df(f2008, 4)
+df2008 <- ibge.load.populacao.estimativa(f2008, 4)
 
 f2009 <- ibge.download.populacao.estimativa(2009)
-df2009 <- ibge.load.df(f2009, 4)
+df2009 <- ibge.load.populacao.estimativa(f2009, 4)
 
 f2011 <- ibge.download.populacao.estimativa(2011)
-df2011 <- ibge.load.df(f2011)
+df2011 <- ibge.load.populacao.estimativa(f2011)
 
 f2012 <- ibge.download.populacao.estimativa(2012)
-df2012 <- ibge.load.df(f2012)
+df2012 <- ibge.load.populacao.estimativa(f2012)
 
 f2013 <- ibge.download.populacao.estimativa(2013)
-df2013 <- ibge.load.df(f2013)
+df2013 <- ibge.load.populacao.estimativa(f2013)
 
 f2014 <- ibge.download.populacao.estimativa(2014)
-df2014 <- ibge.load.df(f2014)
+df2014 <- ibge.load.populacao.estimativa(f2014)
 
 f2015 <- ibge.download.populacao.estimativa(2015)
-df2015 <- ibge.load.df(f2015)
+df2015 <- ibge.load.populacao.estimativa(f2015)
 ```
 
 

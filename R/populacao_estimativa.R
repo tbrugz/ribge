@@ -11,7 +11,7 @@ anos <- c(2008,2009,2010,2011,2012,2013,2014,2015)
 links_dou <- c(
   '/Estimativas_2008/UF_Municipio.zip',
   '/Estimativas_2009/UF_Municipio.zip',
-  '', # ??
+  '', # 2010 census
   '/Estimativas_2011/POP2011_DOU.zip',
   '/Estimativas_2012/estimativa_2012_DOU_28_08_2012_xls.zip',
   '/Estimativas_2013/estimativa_2013_dou_xls.zip',
@@ -26,13 +26,15 @@ link_prepend <- 'ftp://ftp.ibge.gov.br/Estimativas_de_Populacao'
 ibge.download.populacao.estimativa <- function(ano, dir="") {
   url<- df.links[anos==ano,]$links_dou
   filename<- unlist( stringr::str_split(url, "/") )[3]
-  filename_download<- paste0(dir, filename)
+  ext <- unlist( stringr::str_split(filename, "\\.") )[2]
+  filename_extract <- paste0("pop_estimativa_",ano,".",ext)
+  filename_download <- paste0(dir, filename_extract);
   download.file(paste0(link_prepend, url), filename_download)
   return(filename_download)
 }
 
 # ...
-ibge.load.df <- function(filename, skip=2) {
+ibge.load.populacao.estimativa <- function(filename, skip=2) {
   if(stringr::str_detect(filename, "zip$")) {
     filename<-unzip(filename)
   }
@@ -47,26 +49,39 @@ ibge.load.df <- function(filename, skip=2) {
   #return(read_excel(filename, sheet=2, skip=2))
 }
 
-# f2008 <- ibge.download.populacao.estimativa(2008)
-# df2008 <- ibge.load.df(f2008, 4)
+# ...
+ibge.load.populacao <- function(ano, dir="") {
+  if(!ano %in% anos) {
+    stop(paste("data not avaiable for year",ano))
+  }
 
-# f2009 <- ibge.download.populacao.estimativa(2009)
-# df2009 <- ibge.load.df(f2009, 4)
+  # census data
+  if(ano==2010) {
+    return(habitantes2010)
+  }
 
-# f2011 <- ibge.download.populacao.estimativa(2011)
-# df2011 <- ibge.load.df(f2011)
+  # estimated data
+  filename_download_zip <-paste0(dir, "pop_estimativa_", ano, ".zip");
+  filename_download_xls <-paste0(dir, "pop_estimativa_", ano, ".xls");
+  if(file.exists(filename_download_zip)) {
+    f<-filename_download_zip
+  }
+  else if(file.exists(filename_download_xls)) {
+    f<-filename_download_xls
+  }
+  else {
+    f<-ibge.download.populacao.estimativa(ano, dir=dir)
+  }
 
-# f2012 <- ibge.download.populacao.estimativa(2012)
-# df2012 <- ibge.load.df(f2012)
+  if(ano<2010) {
+    df <- ibge.load.populacao.estimativa(f, skip=4)
+  }
+  else {
+    df <- ibge.load.populacao.estimativa(f)
+  }
+  return(df)
+}
 
-# f2013 <- ibge.download.populacao.estimativa(2013)
-# df2013 <- ibge.load.df(f2013)
-
-# f2014 <- ibge.download.populacao.estimativa(2014)
-# df2014 <- ibge.load.df(f2014)
-
-# f2015 <- ibge.download.populacao.estimativa(2015)
-# df2015 <- ibge.load.df(f2015)
 ### df2015 <- read_excel(f2015, sheet=2, skip=2)
 
 # http://www.cidades.ibge.gov.br/xtras/home.php
