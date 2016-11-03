@@ -6,7 +6,7 @@ ribge R package
 
 For now, only (down)loads yearly population estimation for municipalities. See:
 [Estimativas de População - 2015 - DOU](http://www.ibge.gov.br/home/estatistica/populacao/estimativa2015/estimativa_dou.shtm) &
-[estatísticas/Estimativas de Populacao](http://downloads.ibge.gov.br/downloads_estatisticas.htm?caminho=/Estimativas_de_Populacao/)
+[estatísticas/Estimativas de Populacao](http://downloads.ibge.gov.br/downloads_estatisticas.htm?caminho=/Estimativas_de_Populacao/) (or ftp://ftp.ibge.gov.br/Estimativas_de_Populacao/)
 
 2010 Census data gathered from: http://www.sidra.ibge.gov.br/bda/tabela/listabl.asp?z=t&o=25&i=P&c=1378
 
@@ -24,6 +24,8 @@ usage examples
 main usage:
 
 ```
+df2000 <- ibge.load.populacao(2000)
+# ...
 df2008 <- ibge.load.populacao(2008)
 df2009 <- ibge.load.populacao(2009)
 df2010 <- ibge.load.populacao(2010)

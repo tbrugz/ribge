@@ -7,8 +7,16 @@
 # ftp://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2014/estimativa_dou_2014_xls.zip
 # ftp://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2013/estimativa_2013_dou_xls.zip
 
-anos <- c(2008,2009,2010,2011,2012,2013,2014,2015,2016)
+anos <- c(2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016)
 links_dou <- c(
+  '/Estimativas_2000/UF_Municipio.zip',
+  '/Estimativas_2001/UF_Municipio.zip',
+  '/Estimativas_2002/UF_Municipio.zip',
+  '/Estimativas_2003/UF_Municipio.zip',
+  '/Estimativas_2004/UF_Municipio.zip',
+  '/Estimativas_2005/UF_Municipio.zip',
+  '/Estimativas_2006/UF_Municipio.zip',
+  '', # 2007 ?
   '/Estimativas_2008/UF_Municipio.zip',
   '/Estimativas_2009/UF_Municipio.zip',
   '', # 2010 census
@@ -24,12 +32,15 @@ df.links <- dplyr::data_frame(anos, links_dou)
 link_prepend <- 'ftp://ftp.ibge.gov.br/Estimativas_de_Populacao'
 
 # ...
-ibge.download.populacao.estimativa <- function(ano, dir="") {
+ibge.download.populacao.estimativa <- function(ano, dir=NULL) {
   url<- df.links[anos==ano,]$links_dou
   filename<- unlist( stringr::str_split(url, "/") )[3]
   ext <- unlist( stringr::str_split(filename, "\\.") )[2]
   filename_extract <- paste0("pop_estimativa_",ano,".",ext)
-  filename_download <- paste(dir, filename_extract, sep = "/");
+  if( (!is.null(dir) && !(dir=='')) )  {
+    dir <- paste0(dir, "/")
+  }
+  filename_download <- paste0(dir, filename_extract);
   download.file(paste0(link_prepend, url), filename_download)
   return(filename_download)
 }
@@ -50,7 +61,7 @@ ibge.load.populacao.estimativa <- function(filename, skip=2) {
 }
 
 # ...
-ibge.load.populacao <- function(ano, dir="") {
+ibge.load.populacao <- function(ano, dir=NULL) {
   if(!ano %in% anos) {
     stop(paste("data not avaiable for year",ano))
   }
@@ -58,6 +69,10 @@ ibge.load.populacao <- function(ano, dir="") {
   # census data
   if(ano==2010) {
     return(habitantes2010)
+  }
+
+  if(df.links[anos==ano,]$links_dou == '') {
+    stop(paste("invalid url for year",ano))
   }
 
   # estimated data
@@ -77,12 +92,11 @@ ibge.load.populacao <- function(ano, dir="") {
     f<-ibge.download.populacao.estimativa(ano, dir=dir)
   }
 
-  if(ano<2010) {
-    df <- ibge.load.populacao.estimativa(f, skip=4)
+  skip <- 2
+  if(ano > 2000 && ano < 2010) {
+    skip <- 4
   }
-  else {
-    df <- ibge.load.populacao.estimativa(f)
-  }
+  df <- ibge.load.populacao.estimativa(f, skip=skip)
   return(df)
 }
 
