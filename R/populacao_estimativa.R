@@ -16,7 +16,7 @@ links_dou <- c(
   '/Estimativas_2004/UF_Municipio.zip',
   '/Estimativas_2005/UF_Municipio.zip',
   '/Estimativas_2006/UF_Municipio.zip',
-  '', # 2007 ?
+  'http://www.ibge.gov.br/home/estatistica/populacao/contagem2007/popmunic2007layoutTCU14112007.xls', # contagem 2007
   '/Estimativas_2008/UF_Municipio.zip',
   '/Estimativas_2009/UF_Municipio.zip',
   '', # 2010 census
@@ -34,14 +34,18 @@ link_prepend <- 'ftp://ftp.ibge.gov.br/Estimativas_de_Populacao'
 # ...
 ibge.download.populacao.estimativa <- function(ano, dir=NULL) {
   url<- df.links[anos==ano,]$links_dou
-  filename<- unlist( stringr::str_split(url, "/") )[3]
+  filename<- tail( unlist( stringr::str_split(url, "/") ), n=1 )
   ext <- unlist( stringr::str_split(filename, "\\.") )[2]
   filename_extract <- paste0("pop_estimativa_",ano,".",ext)
   if( (!is.null(dir) && !(dir=='')) )  {
     dir <- paste0(dir, "/")
   }
-  filename_download <- paste0(dir, filename_extract);
-  download.file(paste0(link_prepend, url), filename_download)
+  filename_download <- paste0(dir, filename_extract)
+  download_url <- url
+  if(!grepl("^http|ftp", download_url)) {
+    download_url <- paste0(link_prepend, download_url)
+  }
+  download.file(download_url, filename_download)
   return(filename_download)
 }
 
@@ -95,6 +99,9 @@ ibge.load.populacao <- function(ano, dir=NULL) {
   skip <- 2
   if(ano > 2000 && ano < 2010) {
     skip <- 4
+  }
+  if(ano %in% c(2007)) {
+    skip <- 3
   }
   df <- ibge.load.populacao.estimativa(f, skip=skip)
   return(df)
