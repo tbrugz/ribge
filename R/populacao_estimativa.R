@@ -7,7 +7,7 @@
 # ftp://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2014/estimativa_dou_2014_xls.zip
 # ftp://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2013/estimativa_2013_dou_xls.zip
 
-anos <- c(2008,2009,2010,2011,2012,2013,2014,2015)
+anos <- c(2008,2009,2010,2011,2012,2013,2014,2015,2016)
 links_dou <- c(
   '/Estimativas_2008/UF_Municipio.zip',
   '/Estimativas_2009/UF_Municipio.zip',
@@ -16,7 +16,8 @@ links_dou <- c(
   '/Estimativas_2012/estimativa_2012_DOU_28_08_2012_xls.zip',
   '/Estimativas_2013/estimativa_2013_dou_xls.zip',
   '/Estimativas_2014/estimativa_dou_2014_xls.zip',
-  '/Estimativas_2015/estimativa_dou_2015_20150915.xls'
+  '/Estimativas_2015/estimativa_dou_2015_20150915.xls',
+  '/Estimativas_2016/estimativa_dou_2016_20160913.xlsx'
 )
 #skip_dou <- c(4,4,NA,NA,NA,NA,NA,NA)
 df.links <- dplyr::data_frame(anos, links_dou)
@@ -45,8 +46,7 @@ ibge.load.populacao.estimativa <- function(filename, skip=2) {
   }
   df <- readxl::read_excel(filename, sheet=sheet, skip=skip)
   names(df)<-c("uf","codigo_uf","codigo_munic","nome_munic","populacao")
-  return(df[!is.na(df$codigo_uf),])
-  #return(read_excel(filename, sheet=2, skip=2))
+  return( df[!is.na(df$codigo_uf), c(1,2,3,4,5)] )
 }
 
 # ...
@@ -63,11 +63,15 @@ ibge.load.populacao <- function(ano, dir="") {
   # estimated data
   filename_download_zip <-paste0(dir, "pop_estimativa_", ano, ".zip");
   filename_download_xls <-paste0(dir, "pop_estimativa_", ano, ".xls");
+  filename_download_xlsx <-paste0(dir, "pop_estimativa_", ano, ".xlsx");
   if(file.exists(filename_download_zip)) {
     f<-filename_download_zip
   }
   else if(file.exists(filename_download_xls)) {
     f<-filename_download_xls
+  }
+  else if(file.exists(filename_download_xlsx)) {
+    f<-filename_download_xlsx
   }
   else {
     f<-ibge.download.populacao.estimativa(ano, dir=dir)
