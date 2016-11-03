@@ -27,7 +27,7 @@ main usage:
 df2008 <- ibge.load.populacao(2008)
 df2009 <- ibge.load.populacao(2009)
 df2010 <- ibge.load.populacao(2010)
-df2011 <- ibge.load.populacao(2011)
+df2011 <- ibge.load.populacao(2011, dir="/tmp")
 # ...
 df2016 <- ibge.load.populacao(2016)
 

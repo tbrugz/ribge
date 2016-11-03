@@ -29,7 +29,7 @@ ibge.download.populacao.estimativa <- function(ano, dir="") {
   filename<- unlist( stringr::str_split(url, "/") )[3]
   ext <- unlist( stringr::str_split(filename, "\\.") )[2]
   filename_extract <- paste0("pop_estimativa_",ano,".",ext)
-  filename_download <- paste0(dir, filename_extract);
+  filename_download <- paste(dir, filename_extract, sep = "/");
   download.file(paste0(link_prepend, url), filename_download)
   return(filename_download)
 }
