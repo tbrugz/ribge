@@ -29,6 +29,8 @@ links_dou <- c(
   '/Estimativas_2015/estimativa_dou_2015_20150915.xls',
   '/Estimativas_2016/estimativa_dou_2016_20160913.xlsx'
 )
+link_prepend <- 'ftp://ftp.ibge.gov.br/Estimativas_de_Populacao'
+links_dou <- ifelse(grepl("^http|ftp", links_dou), links_dou, paste0(link_prepend, links_dou))
 # skip_dou: NA == 2
 skip_dou <- c(NA,
               4,4,4,4,4,4,3,4,4,NA,
@@ -38,8 +40,7 @@ pop_origem <- c(NA,
                 NA,NA,NA,NA,NA,NA,"Contagem",NA,NA,"Censo",
                 NA,NA,NA,NA,NA,NA)
 df.links <- dplyr::data_frame(ano=anos, links_dou, skip_dou, pop_origem)
-link_prepend <- 'ftp://ftp.ibge.gov.br/Estimativas_de_Populacao'
-rm(anos, links_dou, skip_dou, pop_origem)
+rm(anos, links_dou, skip_dou, pop_origem, link_prepend)
 
 # ...
 ibge.download.populacao.estimativa <- function(ano, dir=NULL) {
@@ -51,11 +52,11 @@ ibge.download.populacao.estimativa <- function(ano, dir=NULL) {
     dir <- paste0(dir, "/")
   }
   filename_download <- paste0(dir, filename_extract)
-  download_url <- url
-  if(!grepl("^http|ftp", download_url)) {
-    download_url <- paste0(link_prepend, download_url)
-  }
-  download.file(download_url, filename_download)
+  #download_url <- url
+  #if(!grepl("^http|ftp", download_url)) {
+  #  download_url <- paste0(link_prepend, download_url)
+  #}
+  download.file(url, filename_download)
   return(filename_download)
 }
 
@@ -69,9 +70,24 @@ ibge.load.populacao.estimativa <- function(filename, skip=2) {
     sheet <- stringr::str_extract(sheet, ".*(Munic|MUNIC).*")
     sheet <- sheet[!is.na(sheet)]
   }
-  df <- readxl::read_excel(filename, sheet=sheet, skip=skip)
-  names(df)<-c("uf","codigo_uf","codigo_munic","nome_munic","populacao")
-  return( df[!is.na(df$codigo_uf), c(1,2,3,4,5)] )
+  df <- tryCatch({
+    d <- readxl::read_excel(filename, sheet=sheet,
+                           col_names = c("uf","codigo_uf","codigo_munic","nome_munic","populacao_str"),
+                           col_types = c("text", "numeric", "text", "text", "text"),
+                           skip=skip+1)
+    d
+  }, error = function(e) {
+    # years in which error occurs: 2000, 2001, 2009, 2012, 2013, 2014, 2016
+    warning(paste0("Error reading file '", filename, "'; using fallback strategy"));
+    d <- readxl::read_excel(filename, sheet=sheet,
+                       skip=skip)
+    names(d)<-c("uf","codigo_uf","codigo_munic","nome_munic","populacao_str")
+    d[,c(1,2,3,4,5)]
+  })
+
+  df$populacao <- as.numeric(stringr::str_extract(df$populacao_str, "([\\d\\.]+)"))
+  df$populacao <- ifelse(df$populacao %% 1 > 0, df$populacao*1000, df$populacao)
+  return(df[!is.na(df$codigo_uf),])
 }
 
 # ...
@@ -82,7 +98,9 @@ ibge.load.populacao <- function(ano, dir=NULL) {
 
   # census data
   if(ano==2010) {
-    return(habitantes2010)
+    d<-habitantes2010
+    d$populacao_str <- d$populacao
+    return(d[,c(1,2,3,4,6,5)])
   }
 
   if(df.links[df.links$ano==ano,]$links_dou == '') {
