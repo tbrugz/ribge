@@ -1,16 +1,31 @@
 
 ribge R package
------
+======
 
 [R](https://www.r-project.org/) package for (down)loading data from [IBGE](http://www.ibge.gov.br/) (Instituto Brasileiro de Geografia e Estatística)
 
-For now, only (down)loads yearly population estimation for municipalities. See:
+
+data: population
+----
+
+Yearly population for municipalities. See:
 [Estimativas de População - 2015 - DOU](http://www.ibge.gov.br/home/estatistica/populacao/estimativa2015/estimativa_dou.shtm) &
 [estatísticas/Estimativas de Populacao](http://downloads.ibge.gov.br/downloads_estatisticas.htm?caminho=/Estimativas_de_Populacao/) (or ftp://ftp.ibge.gov.br/Estimativas_de_Populacao/)
 
 2007 data comes from [Contegem da população](https://pt.wikipedia.org/wiki/Contagem_de_popula%C3%A7%C3%A3o): see http://www.ibge.gov.br/home/estatistica/populacao/contagem2007/
 
 2010 [Census data](https://pt.wikipedia.org/wiki/Censo_demogr%C3%A1fico) gathered from: http://www.sidra.ibge.gov.br/bda/tabela/listabl.asp?z=t&o=25&i=P&c=1378
+
+years avaiable: 2000-2016
+
+
+data: GNP (gross national product) / PIB (produto interno bruto)
+----
+
+Municipalities GNP. See: [Produto Interno Bruto dos Municípios](http://www.ibge.gov.br/home/estatistica/economia/pibmunicipios/) & [Produto Interno Bruto dos Municípios 2011](http://www.ibge.gov.br/home/estatistica/economia/pibmunicipios/2011/default_base.shtm)
+
+years avaiable: 1999-2013
+
 
 install
 -----
@@ -20,10 +35,11 @@ install
 devtools::install_github("tbrugz/ribge")
 ```
 
+
 usage examples
 -----
 
-main usage:
+population, main usage:
 
 ```
 df2000 <- ibge.load.populacao(2000)
@@ -38,7 +54,13 @@ df2016 <- ibge.load.populacao(2016)
 
 ```
 
-old way:
+GNP (PIB) example:
+
+```
+pib2013 <- pib.load(2013)
+```
+
+population, old way:
 
 ```
 f2008 <- ibge.download.populacao.estimativa(2008)

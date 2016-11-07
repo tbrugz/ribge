@@ -22,7 +22,25 @@ util.download <- function(url, dir=NULL, file=NULL, alwaysDownload=F) {
 util.downloadAndUnzip <- function(url, dir=NULL, file=NULL, alwaysDownload=F) {
   filename <- util.download(url, dir, file, alwaysDownload)
   if(stringr::str_detect(filename, "zip$")) {
-    filename <- unzip(filename, exdir = ifelse(is.null(dir), ".", dir) )
+    #filename <- unzip(filename, exdir = ifelse(is.null(dir), ".", dir) )
+    filename <- my_unzip(filename, exdir = ifelse(is.null(dir), ".", dir) )
   }
   return(filename)
+}
+
+# filenames with non-ascii char problem...
+# see: https://github.com/hadley/devtools/commit/1b1732cc2305a1880e3a788a1160fe85de37b06e
+my_unzip <- function(src, exdir, unzip = getOption("unzip")) {
+  if (unzip == "internal") {
+    return(unzip(src, exdir = exdir))
+  }
+
+  args <- paste(
+    "-o", shQuote(src),
+    "-d", shQuote(exdir)
+  )
+
+  files <- system2(unzip, stdout = T, args)
+  files<-files[-1]
+  trimws(gsub("inflating:", "", files))
 }
