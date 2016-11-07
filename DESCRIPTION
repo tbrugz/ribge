@@ -1,6 +1,6 @@
 Package: ribge
 Title: Loads data from IBGE - population for now
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Authors@R: person("Telmo", "Brugnara", email = "tbrugz@gmail.com", role = c("aut", "cre"))
 Description: Loads data from IBGE - population for now
 #Depends: R (>= 3.3.0)
@@ -9,5 +9,6 @@ Encoding: UTF-8
 LazyData: true
 Imports:
   dplyr,
+  readr,
   readxl,
   stringr
