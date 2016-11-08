@@ -44,3 +44,17 @@ util.unzip <- function(src, exdir, unzip = getOption("unzip")) {
   files<-files[-1]
   trimws(gsub("inflating:", "", files))
 }
+
+util.downloadSeries <- function(file, dir = ".") {
+  baseurl <- "http://seriesestatisticas.ibge.gov.br/exportador.aspx?arquivo="
+  filef <- paste0(file, ".csv")
+  util.download( paste0(baseurl, filef), file = filef, dir = dir )
+}
+
+# http://stackoverflow.com/a/25989828/616413
+vswitch <- function(expr, ...) {
+  lookup <- list(...)
+  vec <- as.character(expr)
+  vec[is.na(vec)] <- "NA"
+  unname(do.call(c, lookup[vec]))
+}

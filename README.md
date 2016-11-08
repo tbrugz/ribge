@@ -27,6 +27,14 @@ Municipalities GNP. See: [Produto Interno Bruto dos Municípios](http://www.ibge
 years avaiable: 1999-2013
 
 
+data: inflation & GDP deflator
+----
+
+INPC index. See: [índice de preços » INPC - Índice Nacional de Preços ao Consumidor](http://seriesestatisticas.ibge.gov.br/lista_tema.aspx?op=0&de=53&no=11)
+
+GDP deflator. See: [sistema de contas nacionais » contas nacionais](http://seriesestatisticas.ibge.gov.br/lista_tema.aspx?op=0&de=41&no=12)
+
+
 install & load
 -----
 
@@ -59,6 +67,13 @@ GNP (PIB) example:
 
 ```
 pib2013 <- pib.load(2013)
+```
+
+inflation & GDP deflator:
+
+```
+inpc2015 <- inflacao.load.inpc(2015)
+deflatorpib <- inflacao.load.deflatorpib()
 ```
 
 TSE municipalities...
