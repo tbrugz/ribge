@@ -1,8 +1,8 @@
 Package: ribge
-Title: Loads data from IBGE - population for now
-Version: 0.0.0.9001
+Title: Loads data from IBGE
+Version: 0.0.0.9002
 Authors@R: person("Telmo", "Brugnara", email = "tbrugz@gmail.com", role = c("aut", "cre"))
-Description: Loads data from IBGE - population for now
+Description: Loads data from IBGE - population, GNP, ...
 #Depends: R (>= 3.3.0)
 License: GPL-3
 Encoding: UTF-8

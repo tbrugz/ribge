@@ -27,12 +27,13 @@ Municipalities GNP. See: [Produto Interno Bruto dos Municípios](http://www.ibge
 years avaiable: 1999-2013
 
 
-install
+install & load
 -----
 
 ```
 # install.packages("devtools")
 devtools::install_github("tbrugz/ribge")
+library(ribge)
 ```
 
 
@@ -58,6 +59,12 @@ GNP (PIB) example:
 
 ```
 pib2013 <- pib.load(2013)
+```
+
+TSE municipalities...
+
+```
+tsemun <- tse.load.municipios()
 ```
 
 population, old way:
