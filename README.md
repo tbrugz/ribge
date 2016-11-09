@@ -32,7 +32,17 @@ data: inflation & GDP deflator
 
 INPC index. See: [índice de preços » INPC - Índice Nacional de Preços ao Consumidor](http://seriesestatisticas.ibge.gov.br/lista_tema.aspx?op=0&de=53&no=11)
 
+years avaiable: 1991+
+
 GDP deflator. See: [sistema de contas nacionais » contas nacionais](http://seriesestatisticas.ibge.gov.br/lista_tema.aspx?op=0&de=41&no=12)
+
+years avaiable: 1948+
+
+
+data: cartography/territory
+----
+
+Municipalities area. See: [Cartografia » Área Territorial Brasileira](http://www.ibge.gov.br/home/geociencias/cartografia/default_territ_area.shtm)
 
 
 install & load
@@ -51,15 +61,15 @@ usage examples
 population, main usage:
 
 ```
-df2000 <- ibge.load.populacao(2000)
+pop2000 <- ibge.load.populacao(2000)
 # ...
-df2007 <- ibge.load.populacao(2007)
-df2008 <- ibge.load.populacao(2008)
-df2009 <- ibge.load.populacao(2009)
-df2010 <- ibge.load.populacao(2010)
-df2011 <- ibge.load.populacao(2011, dir="/tmp")
+pop2007 <- ibge.load.populacao(2007)
+pop2008 <- ibge.load.populacao(2008)
+pop2009 <- ibge.load.populacao(2009)
+pop2010 <- ibge.load.populacao(2010)
+pop2011 <- ibge.load.populacao(2011, dir="/tmp")
 # ...
-df2016 <- ibge.load.populacao(2016)
+pop2016 <- ibge.load.populacao(2016)
 
 ```
 
@@ -76,7 +86,13 @@ inpc2015 <- inflacao.load.inpc(2015)
 deflatorpib <- inflacao.load.deflatorpib()
 ```
 
-TSE municipalities...
+municipalities area:
+
+```
+munArea <- territorio.area.load()
+```
+
+TSE municipalities:
 
 ```
 tsemun <- tse.load.municipios()
