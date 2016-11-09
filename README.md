@@ -38,6 +38,10 @@ IPCA index. See: [Índice de preços » IPCA - Índice Nacional de Preços ao Co
 
 years avaiable: 1991+
 
+SINAPI construction price index. See: [Sistema Nacional de Pesquisa de Custos e Índices da Construção Civil](http://www.ibge.gov.br/home/estatistica/indicadores/precos/sinapi/) & [índice de preços » índices da construção civil](http://seriesestatisticas.ibge.gov.br/lista_tema.aspx?op=0&de=39&no=11)
+
+years avaiable: 1986+
+
 GDP deflator. See: [sistema de contas nacionais » contas nacionais](http://seriesestatisticas.ibge.gov.br/lista_tema.aspx?op=0&de=41&no=12)
 
 years avaiable: 1948+
@@ -88,6 +92,7 @@ inflation & GDP deflator:
 ```
 inpc2015 <- inflacao.load.inpc(2015)
 ipca2015 <- inflacao.load.ipca(2015)
+sinapi2015 <- inflacao.load.sinapi(2015)
 deflatorpib <- inflacao.load.deflatorpib()
 ```
 
