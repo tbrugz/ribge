@@ -5,7 +5,7 @@ pib.load <- function(ano = NA, dir = ".") {
   }
 
   url <- "ftp://ftp.ibge.gov.br/Pib_Municipios/2012/base/base_1999_2012_xlsx.zip"
-  colnames <- c("ano", "codigo_uf", "nome_uf", "cod_munic", "nome_munic",
+  colnames <- c("ano", "codigo_uf", "nome_uf", "cod_municipio", "nome_munic",
                 "nome_metro", "codigo_meso", "nome_meso", "codigo_micro", "nome_micro",
                 "vab_agropecuaria", "vab_industria", "vab_servicos", "vab_adm_publica", "impostos",
                 "pib_total", "populacao", "pib_per_capita")
@@ -13,7 +13,7 @@ pib.load <- function(ano = NA, dir = ".") {
   #else
   if(is.na(ano) || ano >= 2010) {
     url <- "ftp://ftp.ibge.gov.br/Pib_Municipios/2010_2013/base/base_xls.zip"
-    colnames <- c("ano", "codigo_uf", "nome_uf", "cod_munic", "nome_munic",
+    colnames <- c("ano", "codigo_uf", "nome_uf", "cod_municipio", "nome_munic",
                   "nome_metro", "codigo_meso", "nome_meso", "codigo_micro", "nome_micro",
                   "vab_agropecuaria", "vab_industria", "vab_servicos_exclusivo", "vab_adm_publica", "vab_total",
                   "impostos", "pib_total", "populacao", "pib_per_capita")

@@ -85,6 +85,7 @@ ibge.load.populacao.estimativa <- function(filename, skip=2) {
     d[,c(1,2,3,4,5)]
   })
 
+  df$cod_municipio <- paste0(df$codigo_uf, df$codigo_munic)
   df$populacao <- as.numeric(stringr::str_extract(df$populacao_str, "([\\d\\.]+)"))
   df$populacao <- ifelse(df$populacao %% 1 > 0, df$populacao*1000, df$populacao)
   return(df[!is.na(df$codigo_uf),])

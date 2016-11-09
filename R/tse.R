@@ -5,7 +5,7 @@ tse.load.municipios <- function(dir=NULL) {
   loc <- readr::locale(encoding = "ISO-8859-1")
   #print(file)
   df <- readr::read_csv2(file, locale = loc)
-  names(df) <- c("codigo_munic_tse", "uf", "nome")
+  names(df) <- c("cod_municipio_tse", "uf", "nome_municipio")
   df
 }
 
