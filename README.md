@@ -30,7 +30,11 @@ years avaiable: 1999-2013
 data: inflation & GDP deflator
 ----
 
-INPC index. See: [índice de preços » INPC - Índice Nacional de Preços ao Consumidor](http://seriesestatisticas.ibge.gov.br/lista_tema.aspx?op=0&de=53&no=11)
+INPC index. See: [Índice de preços » INPC - Índice Nacional de Preços ao Consumidor](http://seriesestatisticas.ibge.gov.br/lista_tema.aspx?op=0&de=53&no=11)
+
+years avaiable: 1991+
+
+IPCA index. See: [Índice de preços » IPCA - Índice Nacional de Preços ao Consumidor Amplo](http://seriesestatisticas.ibge.gov.br/lista_tema.aspx?op=0&de=52&no=11)
 
 years avaiable: 1991+
 
@@ -83,6 +87,7 @@ inflation & GDP deflator:
 
 ```
 inpc2015 <- inflacao.load.inpc(2015)
+ipca2015 <- inflacao.load.ipca(2015)
 deflatorpib <- inflacao.load.deflatorpib()
 ```
 
