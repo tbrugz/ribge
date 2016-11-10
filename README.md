@@ -106,6 +106,8 @@ TSE municipalities:
 
 ```
 tsemun <- tse.load.municipios()
+# mapping between ibge & tse municipalities codes
+data("municipioIbgeTseMap")
 ```
 
 population, old way:
