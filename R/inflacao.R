@@ -22,15 +22,22 @@ inflacao.load.inpc <- function(ano, dir=NULL) {
   df[df$ano==ano,]
 }
 
+inflacao.transform.df.data <- function(df) {
+  df <- separate(df, data, c("mes_str", "ano"))
+  df$ano <- ifelse(as.integer(df$ano)>50 , as.integer(df$ano)+1900 , as.integer(df$ano)+2000 )
+  df$mes <- vswitch(df$mes_str, jan=1, fev=2, mar=3, abr=4, mai=5, jun=6,
+                    jul=7, ago=8, set=9, out=10, nov=11, dez=12, -1)
+  df
+}
+
 inflacao.transform.df <- function(df) {
   df$OPCAO[1] <- "0,Indice geral"
   df <- separate(df, OPCAO, c("categoria", "categoria_str"), sep = ",")
   df <- select(df, -Brasil) %>%
     gather(data, valor, -categoria, -categoria_str)
-  df <- separate(df, data, c("mes_str", "ano"))
-  df$ano <- ifelse(as.integer(df$ano)>50 , as.integer(df$ano)+1900 , as.integer(df$ano)+2000 )
-  df$mes <- vswitch(df$mes_str, jan=1, fev=2, mar=3, abr=4, mai=5, jun=6,
-                   jul=7, ago=8, set=9, out=10, nov=11, dez=12, -1)
+
+  df <- inflacao.transform.df.data(df)
+
   df$categoria <- as.integer(df$categoria)
   #df[df$ano==ano,c(4,6,1,2,5)]
   df[,c(4,6,1,2,5)]
@@ -72,10 +79,7 @@ inflacao.load.sinapi <- function(ano, dir=NULL) {
   # transform
   df <- select(df, -Brasil) %>%
     gather(data, valor)
-  df <- separate(df, data, c("mes_str", "ano"))
-  df$ano <- ifelse(as.integer(df$ano)>50 , as.integer(df$ano)+1900 , as.integer(df$ano)+2000 )
-  df$mes <- vswitch(df$mes_str, jan=1, fev=2, mar=3, abr=4, mai=5, jun=6,
-                    jul=7, ago=8, set=9, out=10, nov=11, dez=12, -1)
+  df <- inflacao.transform.df.data(df)
 
   # return
   df[df$ano==ano,c(2,4,3)]

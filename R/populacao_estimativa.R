@@ -1,8 +1,4 @@
 
-#library(dplyr)
-#library(stringr)
-#library(readxl)
-
 # http://www.ibge.gov.br/home/estatistica/populacao/estimativa2014/estimativa_dou.shtm
 # ftp://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2014/estimativa_dou_2014_xls.zip
 # ftp://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2013/estimativa_2013_dou_xls.zip

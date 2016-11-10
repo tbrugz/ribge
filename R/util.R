@@ -1,4 +1,7 @@
 
+library(dplyr)
+library(tidyr)
+
 util.download <- function(url, dir=NULL, file=NULL, alwaysDownload=F) {
   #ext <- tail( unlist( stringr::str_split(filename, "\\.") ), n=1)
   #filename_extract <- paste0("file",".",ext)
