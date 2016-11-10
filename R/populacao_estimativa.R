@@ -81,9 +81,9 @@ ibge.load.populacao.estimativa <- function(filename, skip=2) {
     d[,c(1,2,3,4,5)]
   })
 
-  df$cod_municipio <- paste0(df$codigo_uf, df$codigo_munic)
   df$populacao <- as.numeric(stringr::str_extract(df$populacao_str, "([\\d\\.]+)"))
   df$populacao <- ifelse(df$populacao %% 1 > 0, df$populacao*1000, df$populacao)
+  df$cod_municipio <- paste0(df$codigo_uf, df$codigo_munic)
   return(df[!is.na(df$codigo_uf),])
 }
 
@@ -97,7 +97,8 @@ ibge.load.populacao <- function(ano, dir=NULL) {
   if(ano==2010) {
     d<-habitantes2010
     d$populacao_str <- d$populacao
-    return(d[,c(1,2,3,4,6,5)])
+    d$cod_municipio <- paste0(df$codigo_uf, df$codigo_munic)
+    return(d[,c(1,2,3,4,6,5,7)])
   }
 
   if(df.links[df.links$ano==ano,]$links_dou == '') {
