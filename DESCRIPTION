@@ -1,17 +1,19 @@
 Package: ribge
 Title: Loads data from IBGE
-Version: 0.0.0.9003
+Version: 0.0.0.9004
 Authors@R: person("Telmo", "Brugnara", email = "tbrugz@gmail.com", role = c("aut", "cre"))
-Description: Loads data from IBGE - population, GNP, price indexes, territory, ...
+Description: Loads data from IBGE - population, GNP, price indexes,
+    territory, ...
 #Depends: R (>= 3.3.0)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports:
-  dplyr,
-  readr,
-  readxl,
-  stringr,
-  tidyr
+    dplyr,
+    readr,
+    readxl,
+    stringr,
+    tidyr
 URL: https://github.com/tbrugz/ribge
 BugReports: https://github.com/tbrugz/ribge/issues
+RoxygenNote: 5.0.1

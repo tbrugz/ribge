@@ -1,7 +1,8 @@
 
-library(dplyr)
-library(tidyr)
+#library(dplyr)
+#library(tidyr)
 
+#' @export
 util.download <- function(url, dir=NULL, file=NULL, alwaysDownload=F) {
   #ext <- tail( unlist( stringr::str_split(filename, "\\.") ), n=1)
   #filename_extract <- paste0("file",".",ext)
@@ -22,6 +23,7 @@ util.download <- function(url, dir=NULL, file=NULL, alwaysDownload=F) {
   return(filename_download)
 }
 
+#' @export
 util.downloadAndUnzip <- function(url, dir=NULL, file=NULL, alwaysDownload=F) {
   filename <- util.download(url, dir, file, alwaysDownload)
   if(stringr::str_detect(filename, "zip$")) {
@@ -33,6 +35,7 @@ util.downloadAndUnzip <- function(url, dir=NULL, file=NULL, alwaysDownload=F) {
 
 # filenames with non-ascii char problem...
 # see: https://github.com/hadley/devtools/commit/1b1732cc2305a1880e3a788a1160fe85de37b06e
+#' @export
 util.unzip <- function(src, exdir, unzip = getOption("unzip")) {
   if (unzip == "internal") {
     return(unzip(src, exdir = exdir))
@@ -48,6 +51,7 @@ util.unzip <- function(src, exdir, unzip = getOption("unzip")) {
   trimws(gsub("inflating:", "", files))
 }
 
+#' @export
 util.downloadSeries <- function(file, dir = ".") {
   baseurl <- "http://seriesestatisticas.ibge.gov.br/exportador.aspx?arquivo="
   filef <- paste0(file, ".csv")
@@ -55,6 +59,7 @@ util.downloadSeries <- function(file, dir = ".") {
 }
 
 # http://stackoverflow.com/a/25989828/616413
+#' @export
 vswitch <- function(expr, ...) {
   lookup <- list(...)
   vec <- as.character(expr)

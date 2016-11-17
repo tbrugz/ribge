@@ -39,6 +39,7 @@ df.links <- dplyr::data_frame(ano=anos, links_dou, skip_dou, pop_origem)
 rm(anos, links_dou, skip_dou, pop_origem, link_prepend)
 
 # ...
+#' @export
 ibge.download.populacao.estimativa <- function(ano, dir=NULL) {
   url<- df.links[df.links$ano==ano,]$links_dou
   filename<- tail( unlist( stringr::str_split(url, "/") ), n=1 )
@@ -57,6 +58,7 @@ ibge.download.populacao.estimativa <- function(ano, dir=NULL) {
 }
 
 # ...
+#' @export
 ibge.load.populacao.estimativa <- function(filename, skip=2) {
   if(stringr::str_detect(filename, "zip$")) {
     filename<-unzip(filename)
@@ -88,6 +90,7 @@ ibge.load.populacao.estimativa <- function(filename, skip=2) {
 }
 
 # ...
+#' @export
 ibge.load.populacao <- function(ano, dir=NULL) {
   if(!ano %in% df.links$ano) {
     stop(paste("data not avaiable for year",ano))

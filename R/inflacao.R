@@ -4,6 +4,7 @@
 # PC49	INPC - índice geral e grupos de produtos e serviços (% no mês)	Mensal	2006/jul-2011/dez
 # PC52	INPC - índice geral e grupos de produtos e serviços (% no mês)	Mensal	2012/jan-2016/jul
 # http://seriesestatisticas.ibge.gov.br/exportador.aspx?arquivo=PC52_BR_PERC.csv
+#' @export
 inflacao.load.inpc <- function(ano, dir=NULL) {
   if(ano<1991) {
     stop(paste("data not avaiable for year",ano))
@@ -22,6 +23,7 @@ inflacao.load.inpc <- function(ano, dir=NULL) {
   df[df$ano==ano,]
 }
 
+#' @import tidyr
 inflacao.transform.df.data <- function(df) {
   df <- separate(df, data, c("mes_str", "ano"))
   df$ano <- ifelse(as.integer(df$ano)>50 , as.integer(df$ano)+1900 , as.integer(df$ano)+2000 )
@@ -30,6 +32,8 @@ inflacao.transform.df.data <- function(df) {
   df
 }
 
+#' @import tidyr
+#' @import dplyr
 inflacao.transform.df <- function(df) {
   df$OPCAO[1] <- "0,Indice geral"
   df <- separate(df, OPCAO, c("categoria", "categoria_str"), sep = ",")
@@ -47,6 +51,7 @@ inflacao.transform.df <- function(df) {
 #IA48	IPCA - índice geral e grupos de produtos e serviços (% no mês)	Mensal	1999/ago-2006/jun
 #IA55	IPCA - índice geral e grupos de produtos e serviços (% no mês)	Mensal	2006/jul-2011/dez
 #IA59	IPCA - índice geral e grupos de produtos e serviços (% no mês)	Mensal	2012/jan-2016/jul
+#' @export
 inflacao.load.ipca <- function(ano, dir=NULL) {
   if(ano<1991) {
     stop(paste("data not avaiable for year",ano))
@@ -65,7 +70,9 @@ inflacao.load.ipca <- function(ano, dir=NULL) {
   df[df$ano==ano,]
 }
 
-#SI7_BR_PERC - índice de preços » índices da construção civil » Custo médio m² em moeda corrente - variação (% no mês)
+# SI7_BR_PERC - índice de preços » índices da construção civil » Custo médio m² em moeda corrente - variação (% no mês)
+#' @import tidyr
+#' @export
 inflacao.load.sinapi <- function(ano, dir=NULL) {
   if(ano<1986) {
     stop(paste("data not avaiable for year",ano))
@@ -87,6 +94,8 @@ inflacao.load.sinapi <- function(ano, dir=NULL) {
 
 # http://seriesestatisticas.ibge.gov.br/lista_tema.aspx?op=0&de=41&no=12
 # SCN54	Deflator do Produto Interno Bruto	Anual	1948-2014
+#' @import tidyr
+#' @export
 inflacao.load.deflatorpib <- function(dir=".") {
   resource <- "SCN54_BR_PERC"
   file <- util.downloadSeries(resource, dir = dir)

@@ -1,4 +1,5 @@
 
+#' @export
 pib.load <- function(ano = NA, dir = ".") {
   if(!is.na(ano) && (ano < 1999 || ano > 2013)) {
     stop(paste("data not avaiable for year",ano))

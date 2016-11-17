@@ -1,4 +1,5 @@
 
+#' @export
 tse.load.municipios <- function(dir=NULL) {
   url <- "http://www.tse.jus.br/arquivos/tse-lista-de-municipios-do-cadastro-da-justica-eleitoral/at_download/file"
   file <- util.downloadAndUnzip(url, dir=dir, file="lista_municipios.zip")
@@ -9,6 +10,7 @@ tse.load.municipios <- function(dir=NULL) {
   df
 }
 
+#' @export
 id4join <- function(nomejoin) {
   nomejoin <- stringi::stri_trans_general(toupper(nomejoin), "Latin-ASCII")
   nomejoin <- gsub(" DOS "," DO ", nomejoin)
