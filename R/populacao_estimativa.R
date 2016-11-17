@@ -50,7 +50,9 @@ ibge.load.populacao.estimativa <- function(filename, skip=2) {
 
   df$populacao <- as.numeric(stringr::str_extract(df$populacao_str, "([\\d\\.]+)"))
   df$populacao <- ifelse(df$populacao %% 1 > 0, df$populacao*1000, df$populacao)
-  df$cod_municipio <- paste0(df$codigo_uf, df$codigo_munic)
+  # XXX: codigo_munic without last/verification digit for year <= 2006
+  #df$cod_munic_int <- as.integer(df$codigo_munic)
+  df$cod_municipio <- paste0(as.integer(df$codigo_uf), stringr::str_pad(as.integer(df$codigo_munic), 5, pad = "0"))
   return(df[!is.na(df$codigo_uf),])
 }
 
@@ -63,11 +65,12 @@ ibge.load.populacao <- function(ano, dir=NULL) {
 
   # census data
   if(ano==2010) {
-    d<-habitantes2010
-    d$populacao_str <- d$populacao
-    #return(d)
-    d$cod_municipio <- paste0(d$codigo_uf, d$codigo_munic)
-    return(d[,c(1,2,3,4,6,5,7)])
+    df <- habitantes2010
+    df$populacao_str <- df$populacao
+    #return(df)
+    #df$cod_munic_int <- as.integer(df$codigo_munic)
+    df$cod_municipio <- paste0(df$codigo_uf, df$codigo_munic)
+    return(df[,c(1,2,3,4,6,5,7)])
   }
 
   if(ibge.populacao.sources[ibge.populacao.sources$ano==ano,]$links_dou == '') {
