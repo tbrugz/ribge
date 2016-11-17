@@ -97,7 +97,8 @@ ibge.load.populacao <- function(ano, dir=NULL) {
   if(ano==2010) {
     d<-habitantes2010
     d$populacao_str <- d$populacao
-    d$cod_municipio <- paste0(df$codigo_uf, df$codigo_munic)
+    #return(d)
+    d$cod_municipio <- paste0(d$codigo_uf, d$codigo_munic)
     return(d[,c(1,2,3,4,6,5,7)])
   }
 
