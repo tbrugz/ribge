@@ -53,17 +53,25 @@ ibge.load.populacao.estimativa <- function(filename, skip=2) {
   return(df[!is.na(df$codigo_uf),])
 }
 
+#' @import dplyr
 ibge.populacao.postproc <- function(df, ano) {
   cod_munic_int <- as.integer(df$codigo_munic)
-  # XXX: codigo_munic without last/verification digit for year <= 2006
+  # XXXdone: codigo_munic without last/verification digit for year <= 2006
   if(ano<=2006) {
     cod_munic4 <- cod_munic_int
   }
   else {
     cod_munic4 <- cod_munic_int %/% 10
   }
-  df$cod_munic6 <- paste0(as.integer(df$codigo_uf), stringr::str_pad(as.integer(cod_munic4), 4, pad = "0"))
-  df$cod_municipio <- paste0(as.integer(df$codigo_uf), stringr::str_pad(as.integer(df$codigo_munic), 5, pad = "0"))
+  df$cod_munic6 <- as.integer( paste0(as.integer(df$codigo_uf), stringr::str_pad(as.integer(cod_munic4), 4, pad = "0")) )
+  if(ano<=2006) {
+    ibge.cod6cod7map <- mutate(municipioIbgeTseMap, cod_munic6 = as.integer(cod_municipio) %/% 10) %>%
+      select(cod_munic6, cod_municipio)
+    df <- left_join(df, ibge.cod6cod7map, by = "cod_munic6")
+  }
+  else {
+    df$cod_municipio <- paste0(as.integer(df$codigo_uf), stringr::str_pad(as.integer(df$codigo_munic), 5, pad = "0"))
+  }
   df
 }
 
