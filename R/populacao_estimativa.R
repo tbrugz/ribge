@@ -50,10 +50,21 @@ ibge.load.populacao.estimativa <- function(filename, skip=2) {
 
   df$populacao <- as.numeric(stringr::str_extract(df$populacao_str, "([\\d\\.]+)"))
   df$populacao <- ifelse(df$populacao %% 1 > 0, df$populacao*1000, df$populacao)
-  # XXX: codigo_munic without last/verification digit for year <= 2006
-  #df$cod_munic_int <- as.integer(df$codigo_munic)
-  df$cod_municipio <- paste0(as.integer(df$codigo_uf), stringr::str_pad(as.integer(df$codigo_munic), 5, pad = "0"))
   return(df[!is.na(df$codigo_uf),])
+}
+
+ibge.populacao.postproc <- function(df, ano) {
+  cod_munic_int <- as.integer(df$codigo_munic)
+  # XXX: codigo_munic without last/verification digit for year <= 2006
+  if(ano<=2006) {
+    cod_munic4 <- cod_munic_int
+  }
+  else {
+    cod_munic4 <- cod_munic_int %/% 10
+  }
+  df$cod_munic6 <- paste0(as.integer(df$codigo_uf), stringr::str_pad(as.integer(cod_munic4), 4, pad = "0"))
+  df$cod_municipio <- paste0(as.integer(df$codigo_uf), stringr::str_pad(as.integer(df$codigo_munic), 5, pad = "0"))
+  df
 }
 
 # ...
@@ -69,8 +80,10 @@ ibge.load.populacao <- function(ano, dir=NULL) {
     df$populacao_str <- df$populacao
     #return(df)
     #df$cod_munic_int <- as.integer(df$codigo_munic)
-    df$cod_municipio <- paste0(df$codigo_uf, df$codigo_munic)
-    return(df[,c(1,2,3,4,6,5,7)])
+    #df$cod_municipio <- paste0(df$codigo_uf, df$codigo_munic)
+    df <- ibge.populacao.postproc(df[,c(1,2,3,4,6,5)], ano)
+    return(df)
+    #return(df[,c(1,2,3,4,6,5,7)])
   }
 
   if(ibge.populacao.sources[ibge.populacao.sources$ano==ano,]$links_dou == '') {
@@ -98,6 +111,7 @@ ibge.load.populacao <- function(ano, dir=NULL) {
   if(is.na(skip)) { skip <- 2 }
 
   df <- ibge.load.populacao.estimativa(f, skip=skip)
+  df <- ibge.populacao.postproc(df, ano)
   return(df)
 }
 
