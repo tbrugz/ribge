@@ -2,8 +2,9 @@
 .Rhistory
 .RData
 .~lock*
+ribge_*.tar.gz
 
-zzz
+tmp
 
 *.html
 *.xls
