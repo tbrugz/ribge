@@ -27,7 +27,13 @@ Municipalities GNP. See: [Produto Interno Bruto dos Municípios](http://www.ibge
 years avaiable: 1999-2013
 
 
-data: inflation & GDP deflator
+data: cartography/territory
+----
+
+Municipalities area. See: [Cartografia » Área Territorial Brasileira](http://www.ibge.gov.br/home/geociencias/cartografia/default_territ_area.shtm)
+
+
+data: price indexes & GDP deflator
 ----
 
 INPC index. See: [Índice de preços » INPC - Índice Nacional de Preços ao Consumidor](http://seriesestatisticas.ibge.gov.br/lista_tema.aspx?op=0&de=53&no=11)
@@ -45,12 +51,6 @@ years avaiable: 1986+
 GDP deflator. See: [sistema de contas nacionais » contas nacionais](http://seriesestatisticas.ibge.gov.br/lista_tema.aspx?op=0&de=41&no=12)
 
 years avaiable: 1948+
-
-
-data: cartography/territory
-----
-
-Municipalities area. See: [Cartografia » Área Territorial Brasileira](http://www.ibge.gov.br/home/geociencias/cartografia/default_territ_area.shtm)
 
 
 install & load
