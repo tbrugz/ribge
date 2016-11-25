@@ -5,7 +5,7 @@
 
 # ...
 #' @export
-ibge.download.populacao.estimativa <- function(ano, dir=NULL) {
+ibge.download.populacao.estimativa <- function(ano, dir=".") {
   url<- ibge.populacao.sources[ibge.populacao.sources$ano==ano,]$links_dou
   filename<- tail( unlist( stringr::str_split(url, "/") ), n=1 )
   ext <- unlist( stringr::str_split(filename, "\\.") )[2]
@@ -24,9 +24,9 @@ ibge.download.populacao.estimativa <- function(ano, dir=NULL) {
 
 # ...
 #' @export
-ibge.load.populacao.estimativa <- function(filename, skip=2) {
+ibge.load.populacao.estimativa <- function(filename, dir=".", skip=2) {
   if(stringr::str_detect(filename, "zip$")) {
-    filename<-unzip(filename)
+    filename <- unzip(filename, exdir=dir)
   }
   sheet <- readxl::excel_sheets(filename)
   if(length(sheet)>1) {
@@ -77,7 +77,7 @@ ibge.populacao.postproc <- function(df, ano) {
 
 # ...
 #' @export
-ibge.load.populacao <- function(ano, dir=NULL) {
+ibge.load.populacao <- function(ano, dir=".") {
   if(!ano %in% ibge.populacao.sources$ano) {
     stop(paste("data not avaiable for year",ano))
   }
@@ -99,9 +99,9 @@ ibge.load.populacao <- function(ano, dir=NULL) {
   }
 
   # estimated data
-  filename_download_zip <-paste0(dir, "pop_estimativa_", ano, ".zip");
-  filename_download_xls <-paste0(dir, "pop_estimativa_", ano, ".xls");
-  filename_download_xlsx <-paste0(dir, "pop_estimativa_", ano, ".xlsx");
+  filename_download_zip <-paste0(dir, "/pop_estimativa_", ano, ".zip");
+  filename_download_xls <-paste0(dir, "/pop_estimativa_", ano, ".xls");
+  filename_download_xlsx <-paste0(dir, "/pop_estimativa_", ano, ".xlsx");
   if(file.exists(filename_download_zip)) {
     f<-filename_download_zip
   }
@@ -118,7 +118,7 @@ ibge.load.populacao <- function(ano, dir=NULL) {
   skip <- ibge.populacao.sources[ibge.populacao.sources$ano==ano,]$skip_dou
   if(is.na(skip)) { skip <- 2 }
 
-  df <- ibge.load.populacao.estimativa(f, skip=skip)
+  df <- ibge.load.populacao.estimativa(f, dir=dir, skip=skip)
   df <- ibge.populacao.postproc(df, ano)
   return(df)
 }
