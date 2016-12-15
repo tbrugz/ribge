@@ -115,6 +115,10 @@ Gathering data from "séries estatísticas" (statistical series website):
 df <- series_estatisticas_carrega("PPM01_BR_ABS")
 # Docentes com curso superior no ensino médio, rede pública e privada
 df <- series_estatisticas_carrega("SEE10_BR_PERC", transpose = T)
+
+# Ver `seriesEstatisticas` para prefixos de códigos:
+seriesEstatisticas
+View(seriesEstatisticas)
 ```
 
 TSE municipalities:
