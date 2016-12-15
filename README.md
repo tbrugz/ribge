@@ -53,6 +53,12 @@ GDP deflator. See: [sistema de contas nacionais » contas nacionais](http://seri
 years avaiable: 1948+
 
 
+statistical series API (series estatísticas)
+-----
+
+Generic functions to gather data from [Séries Históricas e Estatísticas](http://seriesestatisticas.ibge.gov.br/) website.
+
+
 install & load
 -----
 
@@ -100,6 +106,15 @@ municipalities area:
 
 ```
 munArea <- area_municipios()
+```
+
+Gathering data from "séries estatísticas" (statistical series website):
+
+```
+# Efetivo dos rebanhos por tipo de rebanho
+df <- series_estatisticas_carrega("PPM01_BR_ABS")
+# Docentes com curso superior no ensino médio, rede pública e privada
+df <- series_estatisticas_carrega("SEE10_BR_PERC", transpose = T)
 ```
 
 TSE municipalities:

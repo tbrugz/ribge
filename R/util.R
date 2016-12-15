@@ -52,10 +52,25 @@ util.unzip <- function(src, exdir, unzip = getOption("unzip")) {
 }
 
 #' @export
-util.downloadSeries <- function(file, dir = ".") {
+util.downloadSeries <- function(codigo, dir = ".") {
   baseurl <- "http://seriesestatisticas.ibge.gov.br/exportador.aspx?arquivo="
-  filef <- paste0(file, ".csv")
+  filef <- paste0(codigo, ".csv")
   util.download( paste0(baseurl, filef), file = filef, dir = dir )
+}
+
+#' @export
+series_estatisticas_carrega <- function(codigo, dir = ".", transpose = FALSE) {
+  file <- util.downloadSeries(codigo, dir = dir)
+
+  loc <- readr::locale(decimal_mark = ",")
+  df <- readr::read_tsv(file, locale = loc)
+  if(transpose) {
+    #tidyr::gather(df)
+    tt <- t(df)
+    tt <- cbind(rownames(tt), tt)
+    return( dplyr::as_data_frame(tt) )
+  }
+  df
 }
 
 # http://stackoverflow.com/a/25989828/616413
