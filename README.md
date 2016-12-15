@@ -69,43 +69,43 @@ usage examples
 population, main usage:
 
 ```
-pop2000 <- ibge.load.populacao(2000)
+pop2000 <- populacao_municipios(2000)
 # ...
-pop2007 <- ibge.load.populacao(2007)
-pop2008 <- ibge.load.populacao(2008)
-pop2009 <- ibge.load.populacao(2009)
-pop2010 <- ibge.load.populacao(2010)
-pop2011 <- ibge.load.populacao(2011, dir="/tmp")
+pop2007 <- populacao_municipios(2007)
+pop2008 <- populacao_municipios(2008)
+pop2009 <- populacao_municipios(2009)
+pop2010 <- populacao_municipios(2010)
+pop2011 <- populacao_municipios(2011, dir="/tmp")
 # ...
-pop2016 <- ibge.load.populacao(2016)
+pop2016 <- populacao_municipios(2016)
 
 ```
 
 GNP (PIB) example:
 
 ```
-pib2013 <- pib.load(2013)
+pib2013 <- pib_municipios(2013)
 ```
 
 inflation & GDP deflator:
 
 ```
-inpc2015 <- inflacao.load.inpc(2015)
-ipca2015 <- inflacao.load.ipca(2015)
-sinapi2015 <- inflacao.load.sinapi(2015)
-deflatorpib <- inflacao.load.deflatorpib()
+inpc2015 <- precos_inpc(2015)
+ipca2015 <- precos_ipca(2015)
+sinapi2015 <- precos_sinapi(2015)
+deflatorpib <- precos_deflatorpib()
 ```
 
 municipalities area:
 
 ```
-munArea <- territorio.area.load()
+munArea <- area_municipios()
 ```
 
 TSE municipalities:
 
 ```
-tsemun <- tse.load.municipios()
+tsemun <- tse_municipios()
 # mapping between ibge & tse municipalities codes
 data("municipioIbgeTseMap")
 ```

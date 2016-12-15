@@ -5,7 +5,7 @@
 # PC52	INPC - índice geral e grupos de produtos e serviços (% no mês)	Mensal	2012/jan-2016/jul
 # http://seriesestatisticas.ibge.gov.br/exportador.aspx?arquivo=PC52_BR_PERC.csv
 #' @export
-inflacao.load.inpc <- function(ano, dir=NULL) {
+precos_inpc <- function(ano, dir=NULL) {
   if(ano<1991) {
     stop(paste("data not avaiable for year",ano))
   }
@@ -22,6 +22,8 @@ inflacao.load.inpc <- function(ano, dir=NULL) {
   df <- inflacao.transform.df(df)
   df[df$ano==ano,]
 }
+
+inflacao.load.inpc <- precos_inpc
 
 #' @import tidyr
 inflacao.transform.df.data <- function(df) {
@@ -52,7 +54,7 @@ inflacao.transform.df <- function(df) {
 #IA55	IPCA - índice geral e grupos de produtos e serviços (% no mês)	Mensal	2006/jul-2011/dez
 #IA59	IPCA - índice geral e grupos de produtos e serviços (% no mês)	Mensal	2012/jan-2016/jul
 #' @export
-inflacao.load.ipca <- function(ano, dir=NULL) {
+precos_ipca <- function(ano, dir=NULL) {
   if(ano<1991) {
     stop(paste("data not avaiable for year",ano))
   }
@@ -70,10 +72,12 @@ inflacao.load.ipca <- function(ano, dir=NULL) {
   df[df$ano==ano,]
 }
 
+inflacao.load.ipca <- precos_ipca
+
 # SI7_BR_PERC - índice de preços » índices da construção civil » Custo médio m² em moeda corrente - variação (% no mês)
 #' @import tidyr
 #' @export
-inflacao.load.sinapi <- function(ano, dir=NULL) {
+precos_sinapi <- function(ano, dir=NULL) {
   if(ano<1986) {
     stop(paste("data not avaiable for year",ano))
   }
@@ -92,11 +96,13 @@ inflacao.load.sinapi <- function(ano, dir=NULL) {
   df[df$ano==ano,c(2,4,3)]
 }
 
+inflacao.load.sinapi <- precos_sinapi
+
 # http://seriesestatisticas.ibge.gov.br/lista_tema.aspx?op=0&de=41&no=12
 # SCN54	Deflator do Produto Interno Bruto	Anual	1948-2014
 #' @import tidyr
 #' @export
-inflacao.load.deflatorpib <- function(dir=".") {
+precos_deflatorpib <- function(dir=".") {
   resource <- "SCN54_BR_PERC"
   file <- util.downloadSeries(resource, dir = dir)
   loc <- readr::locale(decimal_mark = ",")
@@ -105,3 +111,5 @@ inflacao.load.deflatorpib <- function(dir=".") {
   df$ano <- as.integer(stringr::str_extract(df$ano_str, "([\\d\\.]+)"))
   df[,c(3,1,2)]
 }
+
+inflacao.load.deflatorpib <- precos_deflatorpib

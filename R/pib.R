@@ -1,6 +1,6 @@
 
 #' @export
-pib.load <- function(ano = NA, dir = ".") {
+pib_municipios <- function(ano = NA, dir = ".") {
   if(!is.na(ano) && (ano < 1999 || ano > 2013)) {
     stop(paste("data not avaiable for year",ano))
   }
@@ -31,3 +31,5 @@ pib.load <- function(ano = NA, dir = ".") {
 
   df[df$ano==ano,]
 }
+
+pib.load <- pib_municipios

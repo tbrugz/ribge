@@ -5,7 +5,7 @@
 
 # ...
 #' @export
-ibge.download.populacao.estimativa <- function(ano, dir=".") {
+populacao_municipios_download <- ibge.download.populacao.estimativa <- function(ano, dir=".") {
   url<- ibge.populacao.sources[ibge.populacao.sources$ano==ano,]$links_dou
   filename<- tail( unlist( stringr::str_split(url, "/") ), n=1 )
   ext <- unlist( stringr::str_split(filename, "\\.") )[2]
@@ -22,9 +22,11 @@ ibge.download.populacao.estimativa <- function(ano, dir=".") {
   return(filename_download)
 }
 
+ibge.download.populacao.estimativa <- populacao_municipios_download
+
 # ...
 #' @export
-ibge.load.populacao.estimativa <- function(filename, dir=".", skip=2) {
+populacao_municipios_carrega <- function(filename, dir=".", skip=2) {
   if(stringr::str_detect(filename, "zip$")) {
     filename <- unzip(filename, exdir=dir)
   }
@@ -53,6 +55,8 @@ ibge.load.populacao.estimativa <- function(filename, dir=".", skip=2) {
   return(df[!is.na(df$codigo_uf),])
 }
 
+ibge.load.populacao.estimativa <- populacao_municipios_carrega
+
 #' @import dplyr
 ibge.populacao.postproc <- function(df, ano) {
   cod_munic_int <- as.integer(df$codigo_munic)
@@ -77,7 +81,7 @@ ibge.populacao.postproc <- function(df, ano) {
 
 # ...
 #' @export
-ibge.load.populacao <- function(ano, dir=".") {
+populacao_municipios <- function(ano, dir=".") {
   if(!ano %in% ibge.populacao.sources$ano) {
     stop(paste("data not avaiable for year",ano))
   }
@@ -122,6 +126,8 @@ ibge.load.populacao <- function(ano, dir=".") {
   df <- ibge.populacao.postproc(df, ano)
   return(df)
 }
+
+ibge.load.populacao <- populacao_municipios
 
 ### df2015 <- read_excel(f2015, sheet=2, skip=2)
 

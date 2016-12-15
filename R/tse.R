@@ -1,6 +1,6 @@
 
 #' @export
-tse.load.municipios <- function(dir=NULL) {
+tse_municipios <- function(dir=NULL) {
   url <- "http://www.tse.jus.br/arquivos/tse-lista-de-municipios-do-cadastro-da-justica-eleitoral/at_download/file"
   file <- util.downloadAndUnzip(url, dir=dir, file="lista_municipios.zip")
   loc <- readr::locale(encoding = "ISO-8859-1")
@@ -9,6 +9,8 @@ tse.load.municipios <- function(dir=NULL) {
   names(df) <- c("cod_municipio_tse", "uf", "nome_municipio")
   df
 }
+
+tse.load.municipios <- tse_municipios
 
 #' @export
 id4join <- function(nomejoin) {
