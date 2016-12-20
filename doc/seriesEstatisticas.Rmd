@@ -1,0 +1,43 @@
+---
+title: "Statistical Series"
+#author: "Telmo Brugnara"
+#date: "December 20, 2016"
+output: 
+  html_document: 
+    keep_md: yes
+    #self_contained: no
+---
+
+```{r setup, include=FALSE}
+#knitr::opts_chunk$set(echo = TRUE)
+library(ribge)
+#library(knitr)
+```
+
+Table with all series from IBGE's [Séries Estatísticas & Séries Históricas](http://seriesestatisticas.ibge.gov.br/).
+
+After loading `ribge` package, you can find the same data in the `seriesEstatisticas`
+*data_frame*. You may load a given series with the following code:
+
+```{r example, eval=FALSE}
+df <- series_estatisticas_carrega(codigo + "_" + abrangencia + "_" + "ABS"|"PERC")
+```
+
+where `codigo` comes from the `seriesEstatisticas` *data_frame* and `abrangencia` is one of:
+
+* **BR** - brasil
+* **UF** - unidades-federativas
+* **GR** - grandes-regioes
+* **RM** - regioes-metropolitanas
+* **CAP** - capitais
+* **MUN** - municipios
+
+
+The Table
+---------
+
+```{r series, echo=FALSE}
+#see http://kbroman.org/knitr_knutshell/pages/figs_tables.html
+knitr::kable(seriesEstatisticas, digits=2)
+```
+

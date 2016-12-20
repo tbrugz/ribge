@@ -58,6 +58,8 @@ statistical series API (series estatísticas)
 
 Generic functions to gather data from [Séries Históricas e Estatísticas](http://seriesestatisticas.ibge.gov.br/) website.
 
+See avaiable series codes on [doc/seriesEstatisticas.md](doc/seriesEstatisticas.md).
+
 
 install & load
 -----
