@@ -38,6 +38,6 @@ The Table
 
 ```{r series, echo=FALSE}
 #see http://kbroman.org/knitr_knutshell/pages/figs_tables.html
-knitr::kable(seriesEstatisticas, digits=2)
+knitr::kable(seriesEstatisticas, digits=2, format = "markdown")
 ```
 
