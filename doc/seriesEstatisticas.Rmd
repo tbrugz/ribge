@@ -21,10 +21,11 @@ After loading `ribge` package, you can find the same data in the `seriesEstatist
 *data_frame*. You may load a given series with the following code:
 
 ```{r example, eval=FALSE}
-df <- series_estatisticas_carrega(codigo + "_" + abrangencia + "_" + "ABS"|"PERC")
+df <- series_estatisticas_carrega(codigo + "_" + nivel_geo + "_" + "ABS"|"PERC")
 ```
 
-where `codigo` comes from the `seriesEstatisticas` *data_frame* and `abrangencia` is one of:
+where `codigo` is the dataset identifier and `nivel_geo` the geographical level and
+can be one of:
 
 * **BR** - brasil
 * **UF** - unidades-federativas
@@ -32,6 +33,9 @@ where `codigo` comes from the `seriesEstatisticas` *data_frame* and `abrangencia
 * **RM** - regioes-metropolitanas
 * **CAP** - capitais
 * **MUN** - municipios
+
+Both `codigo` and `nivel_geo` can be found in the `seriesEstatisticas`
+*data_frame* (shown bellow).
 
 
 The Table
