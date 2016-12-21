@@ -52,15 +52,18 @@ util.unzip <- function(src, exdir, unzip = getOption("unzip")) {
 }
 
 #' @export
-util.downloadSeries <- function(codigo, dir = ".") {
+util.downloadSeries <- function(codigo, dir = ".", xtraurl = "") {
   baseurl <- "http://seriesestatisticas.ibge.gov.br/exportador.aspx?arquivo="
   filef <- paste0(codigo, ".csv")
+  if(xtraurl != "" && !is.null(xtraurl)) {
+    filef <- paste0(filef, "&", xtraurl)
+  }
   util.download( paste0(baseurl, filef), file = filef, dir = dir )
 }
 
 #' @export
-series_estatisticas_carrega <- function(codigo, dir = ".", transpose = FALSE) {
-  file <- util.downloadSeries(codigo, dir = dir)
+series_estatisticas_carrega <- function(codigo, dir = ".", xtraurl = "", transpose = FALSE) {
+  file <- util.downloadSeries(codigo, dir = dir, xtraurl = xtraurl)
 
   loc <- readr::locale(decimal_mark = ",")
   df <- readr::read_tsv(file, locale = loc)
