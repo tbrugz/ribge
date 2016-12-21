@@ -1,4 +1,5 @@
 
+library(dplyr)
 library(rvest)
 
 #url <- 'http://seriesestatisticas.ibge.gov.br/lista_tema.aspx?op=1&no=1'
@@ -10,6 +11,17 @@ urls <- c(
   'http://seriesestatisticas.ibge.gov.br/lista_tema.aspx?op=1&no=5&nome=capitais',
   'http://seriesestatisticas.ibge.gov.br/lista_tema.aspx?op=1&no=6&nome=municipios'
 )
+
+urlnomes <- c(
+  'BR', # brasil
+  'UF', # unidades federativas
+  'GR', # grandes-regioes
+  'RM', # regioes-metropolitanas
+  'CAP', # capitais
+  'MUN' # municipios
+)
+
+links <- data_frame(url= urls, nivel= urlnomes)
 
 read_tt <- function (url) {
   message(paste0("downloading: ", url))
@@ -26,16 +38,28 @@ read_tt <- function (url) {
 bigdf <- data_frame()
 #dflist <- list()
 
-for (u in urls) {
-  df <- read_tt(u)
+#for(i in 1:nrow(links)) {
+#  u <- links[i,]
+#  print(u$nivel)
+#}
+
+#for (u in links) {
+for(i in 1:nrow(links)) {
+  u <- links[i,]
+  df <- read_tt(u$url)
+  df$nivel <- u$nivel
   #bigdf <- union(bigdf, df)
   bigdf <- bind_rows(bigdf, df)
   #dflist <- c(dflist, df)
 }
 
 #Código, Séries Cadastradas, Periodicidade, Período
-colnames(bigdf) <- c("codigo", "descricao", "periodicidade", "periodo")
+colnames(bigdf) <- c("codigo", "descricao", "periodicidade", "periodo", "nivel")
 #bigdf[big]
-seriesEstatisticas <- filter(bigdf, codigo != "Código") %>% arrange(codigo) %>% distinct()
+seriesEstatisticas1 <- filter(bigdf, codigo != "Código") %>% arrange(codigo, nivel) %>% distinct()
 
-#devtools::use_data(seriesEstatisticas)
+seriesEstatisticas <- filter(bigdf, codigo != "Código") %>% arrange(codigo, nivel) %>%
+  group_by(codigo, descricao, periodicidade, periodo) %>%
+  summarise(niveis = paste(nivel, collapse=",")) %>% arrange(codigo)
+
+#devtools::use_data(seriesEstatisticas, overwrite = TRUE)
