@@ -478,8 +478,7 @@ The Table
 |PD378    |Horas trabalhadas por semana por adolescentes e jovens, com idade entre 15 e 19 anos, ocupados                                                                            |Anual                       |2005-2008           |
 |PD379    |Crianças e adolescentes do sexo masculino, de 5 a 17 anos de idade, ocupadas, por setor de atividade - Trabalho Principal                                                 |Anual                       |1992-1995e1998-2007 |
 |PD380    |Crianças e adolescentes do sexo feminino, de 5 a 17 anos de idade, ocupadas, por setor de atividade - Trabalho Principal                                                  |Anual                       |1992-1995e1998-2007 |
-|PD381    |Classes de rendimento dos adolescentes e jovens de 16 a 24 anos de idade,
-ocupados ( em salários mínimos)                                                                |Anual                       |2005-2009           |
+|PD381    |Classes de rendimento dos adolescentes e jovens de 16 a 24 anos de idade, ocupados ( em salários mínimos)                                                                 |Anual                       |2005-2009           |
 |PD384    |Taxa de analfabetismo funcional                                                                                                                                           |Anual                       |2001-2009           |
 |PD385    |Taxa de analfabetismo funcional, por sexo                                                                                                                                 |Anual                       |1992-1999           |
 |PD386    |Taxa de analfabetismo funcional, por sexo                                                                                                                                 |Anual                       |2001-2009           |
@@ -635,8 +634,7 @@ ocupados ( em salários mínimos)                                               
 |SCN49    |Carga Tributária Bruta                                                                                                                                                    |Anual                       |1947-2011           |
 |SCN50    |Capacidade ou Necessidade Líquida de Financiamento valores correntes                                                                                                      |Anual                       |2000-2014           |
 |SCN51    |Produto Interno Bruto (PIB)valores em Real                                                                                                                                |Anual                       |1901-2000           |
-|SCN52    |Produto Interno Bruto 
-valores correntes                                                                                                                                 |Anual                       |1947-2014           |
+|SCN52    |Produto Interno Bruto  valores correntes                                                                                                                                  |Anual                       |1947-2014           |
 |SCN53    |Produto Interno Brutovariação em volume                                                                                                                                   |Anual                       |1948-2014           |
 |SCN54    |Deflator do Produto Interno Bruto                                                                                                                                         |Anual                       |1948-2014           |
 |SCN55    |Produto Interno Bruto per capita                                                                                                                                          |Anual                       |1947-2014           |

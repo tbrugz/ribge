@@ -12,6 +12,7 @@ output:
 #knitr::opts_chunk$set(echo = TRUE)
 library(ribge)
 #library(knitr)
+options(knitr.table.format = 'markdown')
 ```
 
 Table with all series from IBGE's [Séries Estatísticas & Séries Históricas](http://seriesestatisticas.ibge.gov.br/).
@@ -38,6 +39,8 @@ The Table
 
 ```{r series, echo=FALSE}
 #see http://kbroman.org/knitr_knutshell/pages/figs_tables.html
-knitr::kable(seriesEstatisticas, digits=2, format = "markdown")
+s <- seriesEstatisticas
+s$descricao <- gsub("[\r\n]+", " ", s$descricao)
+knitr::kable(s, digits=2)
 ```
 
