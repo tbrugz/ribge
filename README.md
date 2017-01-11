@@ -19,10 +19,10 @@ Yearly population for municipalities. See:
 years avaiable: 2000-2016
 
 
-data: GNP (gross national product) / PIB (produto interno bruto)
+data: GDP (gross domestic product) / PIB (produto interno bruto)
 ----
 
-Municipalities GNP. See: [Produto Interno Bruto dos Municípios](http://www.ibge.gov.br/home/estatistica/economia/pibmunicipios/) & [Produto Interno Bruto dos Municípios 2011](http://www.ibge.gov.br/home/estatistica/economia/pibmunicipios/2011/default_base.shtm)
+Municipalities GDP. See: [Produto Interno Bruto dos Municípios](http://www.ibge.gov.br/home/estatistica/economia/pibmunicipios/) & [Produto Interno Bruto dos Municípios 2011](http://www.ibge.gov.br/home/estatistica/economia/pibmunicipios/2011/default_base.shtm)
 
 years avaiable: 1999-2013
 
@@ -89,7 +89,7 @@ pop2016 <- populacao_municipios(2016)
 
 ```
 
-GNP (PIB) example:
+GDP (PIB) example:
 
 ```
 pib2013 <- pib_municipios(2013)

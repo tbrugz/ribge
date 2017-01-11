@@ -2,7 +2,7 @@ Package: ribge
 Title: Loads data from IBGE
 Version: 0.0.0.9006
 Authors@R: person("Telmo", "Brugnara", email = "tbrugz@gmail.com", role = c("aut", "cre"))
-Description: Loads data from IBGE - population, GNP, price indexes,
+Description: Loads data from IBGE - population, GDP, price indexes,
     territory, ...
 Depends: R (>= 2.10)
 License: GPL-3
