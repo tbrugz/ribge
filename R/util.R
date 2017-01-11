@@ -2,6 +2,13 @@
 #library(dplyr)
 #library(tidyr)
 
+#' Download a given file
+#'
+#' @param url file's url to download
+#' @param dir directory for temporary (cache) files
+#' @param file name for the local file
+#' @param alwaysDownload if true, ignores local cache
+#' @return a file path
 #' @export
 util.download <- function(url, dir=NULL, file=NULL, alwaysDownload=F) {
   #ext <- tail( unlist( stringr::str_split(filename, "\\.") ), n=1)
@@ -23,6 +30,13 @@ util.download <- function(url, dir=NULL, file=NULL, alwaysDownload=F) {
   return(filename_download)
 }
 
+#' Download and unzip a given file by its URL
+#'
+#' @param url file's url to download
+#' @param dir directory for temporary (cache) files
+#' @param file name for the local file
+#' @param alwaysDownload if true, ignores local cache
+#' @return a file path
 #' @export
 util.downloadAndUnzip <- function(url, dir=NULL, file=NULL, alwaysDownload=F) {
   filename <- util.download(url, dir, file, alwaysDownload)
@@ -35,6 +49,13 @@ util.downloadAndUnzip <- function(url, dir=NULL, file=NULL, alwaysDownload=F) {
 
 # filenames with non-ascii char problem...
 # see: https://github.com/hadley/devtools/commit/1b1732cc2305a1880e3a788a1160fe85de37b06e
+#
+#' Unzips a file
+#'
+#' @param src the file to unzip
+#' @param exdir directory to extract file
+#' @param unzip unzip strategy
+#' @seealso \url{https://github.com/hadley/devtools/commit/1b1732cc2305a1880e3a788a1160fe85de37b06e}
 #' @export
 util.unzip <- function(src, exdir, unzip = getOption("unzip")) {
   if (unzip == "internal") {
@@ -51,6 +72,17 @@ util.unzip <- function(src, exdir, unzip = getOption("unzip")) {
   trimws(gsub("inflating:", "", files))
 }
 
+#' Downloads a given series by its code
+#'
+#' @param codigo the series code
+#' @param dir directory for temporary (cache) files
+#' @param xtraurl extra parameter to include in the request URL
+#' @seealso \url{http://seriesestatisticas.ibge.gov.br/}
+#' @return a file path
+#' @examples
+#' \dontrun{
+#'   filename <- util.downloadSeries("CD99_BR_ABS")
+#' }
 #' @export
 util.downloadSeries <- function(codigo, dir = ".", xtraurl = "") {
   baseurl <- "http://seriesestatisticas.ibge.gov.br/exportador.aspx?arquivo="
@@ -61,6 +93,18 @@ util.downloadSeries <- function(codigo, dir = ".", xtraurl = "") {
   util.download( paste0(baseurl, filef), file = filef, dir = dir )
 }
 
+#' Returns a \code{data.frame} with a given series.
+#'
+#' @param codigo the series code
+#' @param dir directory for temporary (cache) files
+#' @param xtraurl extra parameter to include in the request URL
+#' @param transpose transpose the \code{data.frame}
+#' @seealso \url{http://seriesestatisticas.ibge.gov.br/}
+#' @return a \code{data.frame}
+#' @examples
+#' \dontrun{
+#'   df <- series_estatisticas_carrega("CD99_BR_ABS", transpose=T)
+#' }
 #' @export
 series_estatisticas_carrega <- function(codigo, dir = ".", xtraurl = "", transpose = FALSE) {
   file <- util.downloadSeries(codigo, dir = dir, xtraurl = xtraurl)
@@ -77,6 +121,12 @@ series_estatisticas_carrega <- function(codigo, dir = ".", xtraurl = "", transpo
 }
 
 # http://stackoverflow.com/a/25989828/616413
+#
+#' Vectorized \code{switch}
+#'
+#' @param expr the expression to evaluate
+#' @param ... extra parameters for \code{switch}
+#' @seealso \code{\link{switch}} & \url{http://stackoverflow.com/a/25989828/616413}
 #' @export
 vswitch <- function(expr, ...) {
   lookup <- list(...)

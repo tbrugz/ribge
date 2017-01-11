@@ -1,4 +1,13 @@
 
+#' Returns a \code{data.frame} with the gross domestic product (GDP/PIB) by municipality
+#'
+#' @param ano year of requested data (if not supplied, most current information will be returned)
+#' @param dir directory for temporary files
+#' @return the \code{data.frame}
+#' @examples
+#' \dontrun{
+#'   df <- pib_municipios(2013)
+#' }
 #' @export
 pib_municipios <- function(ano = NA, dir = ".") {
   if(!is.na(ano) && (ano < 1999 || ano > 2013)) {

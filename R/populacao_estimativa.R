@@ -3,7 +3,16 @@
 # ftp://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2014/estimativa_dou_2014_xls.zip
 # ftp://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2013/estimativa_2013_dou_xls.zip
 
-# ...
+#
+#' Returns a file path of the population estimate file for a given year
+#'
+#' @param ano year (2000+) of the requested data file
+#' @param dir directory for temporary files
+#' @return a file path
+#' @examples
+#' \dontrun{
+#'   filename <- populacao_municipios_download(2012)
+#' }
 #' @export
 populacao_municipios_download <- ibge.download.populacao.estimativa <- function(ano, dir=".") {
   url<- ibge.populacao.sources[ibge.populacao.sources$ano==ano,]$links_dou
@@ -24,7 +33,17 @@ populacao_municipios_download <- ibge.download.populacao.estimativa <- function(
 
 ibge.download.populacao.estimativa <- populacao_municipios_download
 
-# ...
+#
+#' Reads a file path with the population estimate file and returns a \code{data.frame}
+#'
+#' @param filename the file path
+#' @param dir directory for temporary files
+#' @param skip number of header lines to skip
+#' @return a \code{data.frame}
+#' @examples
+#' \dontrun{
+#'   df <- populacao_municipios_carrega(filename)
+#' }
 #' @export
 populacao_municipios_carrega <- function(filename, dir=".", skip=2) {
   if(stringr::str_detect(filename, "zip$")) {
@@ -79,7 +98,19 @@ ibge.populacao.postproc <- function(df, ano) {
   df
 }
 
-# ...
+#
+#' Returns a \code{data.frame} with population estimates for all municipalities for the requested year.
+#'
+#' This function internally uses both \code{populacao_municipios_download} & \code{populacao_municipios_carrega}
+#' functions.
+#'
+#' @param ano year of the requested data file
+#' @param dir directory for temporary files
+#' @return a \code{data.frame}
+#' @examples
+#' \dontrun{
+#'   df <- populacao_municipios(2014)
+#' }
 #' @export
 populacao_municipios <- function(ano, dir=".") {
   if(!ano %in% ibge.populacao.sources$ano) {

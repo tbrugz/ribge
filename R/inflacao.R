@@ -4,6 +4,16 @@
 # PC49	INPC - índice geral e grupos de produtos e serviços (% no mês)	Mensal	2006/jul-2011/dez
 # PC52	INPC - índice geral e grupos de produtos e serviços (% no mês)	Mensal	2012/jan-2016/jul
 # http://seriesestatisticas.ibge.gov.br/exportador.aspx?arquivo=PC52_BR_PERC.csv
+#
+#' Returns a \code{data.frame} with montly INPC index for the requested year
+#'
+#' @param ano year (1991+) of requested data
+#' @param dir directory for temporary files
+#' @return the \code{data.frame}
+#' @examples
+#' \dontrun{
+#'   df <- precos_inpc(2015)
+#' }
 #' @export
 precos_inpc <- function(ano, dir=NULL) {
   if(ano<1991) {
@@ -53,6 +63,17 @@ inflacao.transform.df <- function(df) {
 #IA48	IPCA - índice geral e grupos de produtos e serviços (% no mês)	Mensal	1999/ago-2006/jun
 #IA55	IPCA - índice geral e grupos de produtos e serviços (% no mês)	Mensal	2006/jul-2011/dez
 #IA59	IPCA - índice geral e grupos de produtos e serviços (% no mês)	Mensal	2012/jan-2016/jul
+#describeIn precos_inpc Returns a \code{data.frame} with montly IPCA index for the requested year
+#
+#' Returns a \code{data.frame} with montly IPCA index for the requested year
+#'
+#' @param ano year (1991+) of requested data
+#' @param dir directory for temporary files
+#' @return the \code{data.frame}
+#' @examples
+#' \dontrun{
+#'   df <- precos_ipca(2015)
+#' }
 #' @export
 precos_ipca <- function(ano, dir=NULL) {
   if(ano<1991) {
@@ -75,6 +96,16 @@ precos_ipca <- function(ano, dir=NULL) {
 inflacao.load.ipca <- precos_ipca
 
 # SI7_BR_PERC - índice de preços » índices da construção civil » Custo médio m² em moeda corrente - variação (% no mês)
+#
+#' Returns a \code{data.frame} with montly SINAPI index for the requested year
+#'
+#' @param ano year (1986+) of requested data
+#' @param dir directory for temporary files
+#' @return the \code{data.frame}
+#' @examples
+#' \dontrun{
+#'   df <- precos_sinapi(2015)
+#' }
 #' @import tidyr
 #' @export
 precos_sinapi <- function(ano, dir=NULL) {
@@ -100,6 +131,15 @@ inflacao.load.sinapi <- precos_sinapi
 
 # http://seriesestatisticas.ibge.gov.br/lista_tema.aspx?op=0&de=41&no=12
 # SCN54	Deflator do Produto Interno Bruto	Anual	1948-2014
+#
+#' Returns a \code{data.frame} with yearly GDP deflator (year 1948+)
+#'
+#' @param dir directory for temporary files
+#' @return the \code{data.frame}
+#' @examples
+#' \dontrun{
+#'   df <- precos_deflatorpib()
+#' }
 #' @import tidyr
 #' @export
 precos_deflatorpib <- function(dir=".") {
