@@ -4,6 +4,7 @@
 .~lock*
 ribge_*.tar.gz
 
+ribge.Rcheck
 tmp
 
 *.html

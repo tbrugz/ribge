@@ -132,7 +132,9 @@ inflacao.load.sinapi <- precos_sinapi
 # http://seriesestatisticas.ibge.gov.br/lista_tema.aspx?op=0&de=41&no=12
 # SCN54	Deflator do Produto Interno Bruto	Anual	1948-2014
 #
-#' Returns a \code{data.frame} with yearly GDP deflator (year 1948+)
+#' Returns a \code{data.frame} with yearly GDP deflator
+#'
+#' Years avaiable: 1948+
 #'
 #' @param dir directory for temporary files
 #' @return the \code{data.frame}
