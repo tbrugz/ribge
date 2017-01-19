@@ -17,7 +17,7 @@ util.download <- function(url, dir=NULL, file=NULL, alwaysDownload=F) {
     filename <- file
   }
   else {
-    filename <- tail( unlist( stringr::str_split(url, "/") ), n=1 )
+    filename <- utils::tail( unlist( stringr::str_split(url, "/") ), n=1 )
   }
   if( (!is.null(dir) && !(dir=='')) )  {
     dir <- paste0(dir, "/")

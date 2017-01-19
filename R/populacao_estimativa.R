@@ -14,9 +14,10 @@
 #'   filename <- populacao_municipios_download(2012)
 #' }
 #' @export
+#' @importFrom utils download.file
 populacao_municipios_download <- ibge.download.populacao.estimativa <- function(ano, dir=".") {
-  url<- ibge.populacao.sources[ibge.populacao.sources$ano==ano,]$links_dou
-  filename<- tail( unlist( stringr::str_split(url, "/") ), n=1 )
+  url<- ribge::ibge.populacao.sources[ribge::ibge.populacao.sources$ano==ano,]$links_dou
+  filename<- utils::tail( unlist( stringr::str_split(url, "/") ), n=1 )
   ext <- unlist( stringr::str_split(filename, "\\.") )[2]
   filename_extract <- paste0("pop_estimativa_",ano,".",ext)
   if( (!is.null(dir) && !(dir=='')) )  {
@@ -47,7 +48,7 @@ ibge.download.populacao.estimativa <- populacao_municipios_download
 #' @export
 populacao_municipios_carrega <- function(filename, dir=".", skip=2) {
   if(stringr::str_detect(filename, "zip$")) {
-    filename <- unzip(filename, exdir=dir)
+    filename <- utils::unzip(filename, exdir=dir)
   }
   sheet <- readxl::excel_sheets(filename)
   if(length(sheet)>1) {
@@ -88,7 +89,7 @@ ibge.populacao.postproc <- function(df, ano) {
   }
   df$cod_munic6 <- as.integer( paste0(as.integer(df$codigo_uf), stringr::str_pad(as.integer(cod_munic4), 4, pad = "0")) )
   if(ano<=2006) {
-    ibge.cod6cod7map <- mutate(municipioIbgeTseMap, cod_munic6 = as.integer(cod_municipio) %/% 10) %>%
+    ibge.cod6cod7map <- mutate(ribge::municipioIbgeTseMap, cod_munic6 = as.integer(cod_municipio) %/% 10) %>%
       select(cod_munic6, cod_municipio)
     df <- left_join(df, ibge.cod6cod7map, by = "cod_munic6")
   }
@@ -113,13 +114,13 @@ ibge.populacao.postproc <- function(df, ano) {
 #' }
 #' @export
 populacao_municipios <- function(ano, dir=".") {
-  if(!ano %in% ibge.populacao.sources$ano) {
+  if(!ano %in% ribge::ibge.populacao.sources$ano) {
     stop(paste("data not avaiable for year",ano))
   }
 
   # census data
   if(ano==2010) {
-    df <- habitantes2010
+    df <- ribge::habitantes2010
     df$populacao_str <- df$populacao
     #return(df)
     #df$cod_munic_int <- as.integer(df$codigo_munic)
@@ -129,7 +130,7 @@ populacao_municipios <- function(ano, dir=".") {
     #return(df[,c(1,2,3,4,6,5,7)])
   }
 
-  if(ibge.populacao.sources[ibge.populacao.sources$ano==ano,]$links_dou == '') {
+  if(ribge::ibge.populacao.sources[ribge::ibge.populacao.sources$ano==ano,]$links_dou == '') {
     stop(paste("invalid url for year",ano))
   }
 
@@ -150,7 +151,7 @@ populacao_municipios <- function(ano, dir=".") {
     f<-ibge.download.populacao.estimativa(ano, dir=dir)
   }
 
-  skip <- ibge.populacao.sources[ibge.populacao.sources$ano==ano,]$skip_dou
+  skip <- ribge::ibge.populacao.sources[ribge::ibge.populacao.sources$ano==ano,]$skip_dou
   if(is.na(skip)) { skip <- 2 }
 
   df <- ibge.load.populacao.estimativa(f, dir=dir, skip=skip)
