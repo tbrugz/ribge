@@ -89,8 +89,8 @@ ibge.populacao.postproc <- function(df, ano) {
   }
   df$cod_munic6 <- as.integer( paste0(as.integer(df$codigo_uf), stringr::str_pad(as.integer(cod_munic4), 4, pad = "0")) )
   if(ano<=2006) {
-    ibge.cod6cod7map <- mutate(ribge::municipioIbgeTseMap, cod_munic6 = as.integer(cod_municipio) %/% 10) %>%
-      select(cod_munic6, cod_municipio)
+    ibge.cod6cod7map <- mutate_(ribge::municipioIbgeTseMap, cod_munic6 = ~ as.integer(cod_municipio) %/% 10) %>%
+      select_("cod_munic6", "cod_municipio")
     df <- left_join(df, ibge.cod6cod7map, by = "cod_munic6")
   }
   else {
