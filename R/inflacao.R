@@ -49,8 +49,8 @@ inflacao.transform.df.data <- function(df) {
 inflacao.transform.df <- function(df) {
   df$OPCAO[1] <- "0,Indice geral"
   df <- separate_(df, "OPCAO", c("categoria", "categoria_str"), sep = ",")
-  df <- select_(df, "-Brasil")
-  df <- gather_(df, "data", "valor", select_vars_(names(df), list("-categoria", "-categoria_str") ))
+  df <- select_(df, "-Brasil") %>%
+    gather_("data", "valor", select_vars_(names(.), list("-categoria", "-categoria_str") ))
 
   df <- inflacao.transform.df.data(df)
 
@@ -119,8 +119,8 @@ precos_sinapi <- function(ano, dir=NULL) {
   df <- readr::read_tsv(file, locale = loc)
 
   # transform
-  df <- select_(df, "-Brasil")
-  df <- gather_(df, "data", "valor", select_vars(names(df), everything()))
+  df <- select_(df, "-Brasil") %>%
+    gather_("data", "valor", select_vars(names(.), everything()))
   df <- inflacao.transform.df.data(df)
 
   # return
@@ -149,8 +149,8 @@ precos_deflatorpib <- function(dir=".") {
   file <- util.downloadSeries(resource, dir = dir)
   loc <- readr::locale(decimal_mark = ",")
   df <- readr::read_tsv(file, locale = loc)
-  df <- select_(df, "-Brasil")
-  df <- gather_(df, "ano_str", "valor", select_vars(names(df), everything()))
+  df <- select_(df, "-Brasil") %>%
+    gather_("ano_str", "valor", select_vars(names(.), everything()))
   df$ano <- as.integer(stringr::str_extract(df$ano_str, "([\\d\\.]+)"))
   df[,c(3,1,2)]
 }
