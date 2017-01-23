@@ -37,6 +37,11 @@ can be one of:
 Both `codigo` and `nivel_geo` can be found in the `seriesEstatisticas`
 *data_frame* (shown bellow).
 
+You also need to add `ABS` (absolute) or `PERC` (percentage) to the functions's argument
+depending on its datatype. Some examples:
+
+* `series_estatisticas_carrega("FDT221_BR_PERC")` - Employment-to-population ratio, 1992-2007 (BR, percentage)
+* `series_estatisticas_carrega("FDT800_BR_ABS")` - Average income from wages, 1981-2007 (BR, absolute)
 
 The Table
 ---------
