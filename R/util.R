@@ -86,11 +86,14 @@ util.unzip <- function(src, exdir, unzip = getOption("unzip")) {
 #' @export
 util.downloadSeries <- function(codigo, dir = ".", xtraurl = "") {
   baseurl <- "http://seriesestatisticas.ibge.gov.br/exportador.aspx?arquivo="
-  filef <- paste0(codigo, ".csv")
+  filef <- filecache <- codigo
+  filef <- paste0(filef, ".csv")
   if(xtraurl != "" && !is.null(xtraurl)) {
     filef <- paste0(filef, "&", xtraurl)
+    filecache <- paste0(filecache, "_", xtraurl)
   }
-  util.download( paste0(baseurl, filef), file = filef, dir = dir )
+  filecache <- paste0(filecache, ".csv")
+  util.download( paste0(baseurl, filef), file = filecache, dir = dir )
 }
 
 #' Returns a \code{data.frame} with a given series.
