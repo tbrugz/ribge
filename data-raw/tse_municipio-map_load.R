@@ -80,3 +80,16 @@ print( paste("z3 nrow:", nrow(z3)) )
 # 12+, 12-
 
 municipioIbgeTseMap <- select(merged, uf, cod_municipio, cod_municipio_tse)
+
+
+###
+# create 'doc/ibge-tse-map.csv'
+###
+
+library(dplyr)
+library(readr)
+df2010 <- populacao_municipios(2010) %>% select(nome_munic, cod_municipio)
+ibgeTseMap <- inner_join(municipioIbgeTseMap, df2010, by="cod_municipio")
+colnames(ibgeTseMap)[2] <- "cod_municipio_ibge"
+colnames(ibgeTseMap)[4] <- "nome_municipio"
+write_csv(ibgeTseMap, path = "doc/ibge-tse-map.csv")

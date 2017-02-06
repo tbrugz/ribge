@@ -61,6 +61,14 @@ Generic functions to gather data from [Séries Históricas e Estatísticas](http
 See avaiable series codes on [doc/seriesEstatisticas.md](doc/seriesEstatisticas.md).
 
 
+municipalities codes: ibge/tse mapping
+-----
+
+Mapping between IBGE's & [TSE's](http://www.tse.jus.br/arquivos/tse-lista-de-municipios-do-cadastro-da-justica-eleitoral/view) municipalities codes.
+
+See also the [csv file](doc/ibge-tse-map.csv).
+
+
 install & load
 -----
 
@@ -129,31 +137,6 @@ TSE municipalities (see also the [csv file](doc/ibge-tse-map.csv)):
 tsemun <- tse_municipios()
 # mapping between ibge & tse municipalities codes
 data("municipioIbgeTseMap")
-```
-
-population, old way:
-
-```
-f2008 <- ibge.download.populacao.estimativa(2008)
-df2008 <- ibge.load.populacao.estimativa(f2008, 4)
-
-f2009 <- ibge.download.populacao.estimativa(2009)
-df2009 <- ibge.load.populacao.estimativa(f2009, 4)
-
-f2011 <- ibge.download.populacao.estimativa(2011)
-df2011 <- ibge.load.populacao.estimativa(f2011)
-
-f2012 <- ibge.download.populacao.estimativa(2012)
-df2012 <- ibge.load.populacao.estimativa(f2012)
-
-f2013 <- ibge.download.populacao.estimativa(2013)
-df2013 <- ibge.load.populacao.estimativa(f2013)
-
-f2014 <- ibge.download.populacao.estimativa(2014)
-df2014 <- ibge.load.populacao.estimativa(f2014)
-
-f2015 <- ibge.download.populacao.estimativa(2015)
-df2015 <- ibge.load.populacao.estimativa(f2015)
 ```
 
 
