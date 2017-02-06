@@ -123,7 +123,7 @@ seriesEstatisticas
 View(seriesEstatisticas)
 ```
 
-TSE municipalities:
+TSE municipalities (see also the [csv file](doc/ibge-tse-map.csv)):
 
 ```
 tsemun <- tse_municipios()
