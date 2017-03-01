@@ -89,7 +89,13 @@ municipioIbgeTseMap <- select(merged, uf, cod_municipio, cod_municipio_tse)
 library(dplyr)
 library(readr)
 pop2016 <- populacao_municipios(2016) %>% select(nome_munic, cod_municipio)
-colnames(pop2016)[1] <- "nome_municipio"
+colnames(pop2016)[1] <- "nome_municipio_ibge"
 ibgeTseMap <- inner_join(municipioIbgeTseMap, pop2016, by="cod_municipio")
 colnames(ibgeTseMap)[2] <- "cod_municipio_ibge"
+
+# add TSE municipality name
+tsemun <- tse_municipios() %>% select(cod_municipio_tse, nome_municipio)
+colnames(tsemun)[2] <- "nome_municipio_tse"
+ibgeTseMap <- inner_join(ibgeTseMap, tsemun, by="cod_municipio_tse")
+
 write_csv(ibgeTseMap, path = "doc/ibge-tse-map.csv")
