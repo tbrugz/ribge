@@ -17,4 +17,4 @@ Imports:
     tidyr
 URL: https://github.com/tbrugz/ribge
 BugReports: https://github.com/tbrugz/ribge/issues
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

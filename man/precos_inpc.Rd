@@ -22,4 +22,3 @@ Returns a \code{data.frame} with montly INPC index for the requested year
   df <- precos_inpc(2015)
 }
 }
-

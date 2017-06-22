@@ -22,4 +22,3 @@ Returns a \code{data.frame} with montly IPCA index for the requested year
   df <- precos_ipca(2015)
 }
 }
-

@@ -20,4 +20,3 @@ Returns a \code{data.frame} with municipalities from TSE (Tribunal Superior Elei
   df <- tse_municipios()
 }
 }
-

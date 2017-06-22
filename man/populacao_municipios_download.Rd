@@ -22,4 +22,3 @@ Returns a file path of the population estimate file for a given year
   filename <- populacao_municipios_download(2012)
 }
 }
-

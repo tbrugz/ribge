@@ -22,4 +22,3 @@ Returns a \code{data.frame} with montly SINAPI index for the requested year
   df <- precos_sinapi(2015)
 }
 }
-

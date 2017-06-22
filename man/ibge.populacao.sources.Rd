@@ -4,13 +4,7 @@
 \name{ibge.populacao.sources}
 \alias{ibge.populacao.sources}
 \title{Municipalities population estimates file sources}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 17 rows and 4 columns.}
-\usage{
-ibge.populacao.sources
-}
 \description{
 A \code{data.frame} with municipalities population file sources by year. Internally
 used by \code{\link{populacao_municipios_download}} & \code{\link{populacao_municipios}}
 }
-\keyword{datasets}
-

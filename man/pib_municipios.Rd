@@ -22,4 +22,3 @@ Returns a \code{data.frame} with the gross domestic product (GDP/PIB) by municip
   df <- pib_municipios(2013)
 }
 }
-

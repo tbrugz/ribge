@@ -19,4 +19,3 @@ Unzips a file
 \seealso{
 \url{https://github.com/hadley/devtools/commit/1b1732cc2305a1880e3a788a1160fe85de37b06e}
 }
-

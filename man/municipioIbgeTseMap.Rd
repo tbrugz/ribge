@@ -4,12 +4,6 @@
 \name{municipioIbgeTseMap}
 \alias{municipioIbgeTseMap}
 \title{Mapping between IBGE's & TSE's municipalities codes}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 5570 rows and 3 columns.}
-\usage{
-municipioIbgeTseMap
-}
 \description{
 Mapping between IBGE's & TSE's municipalities codes
 }
-\keyword{datasets}
-

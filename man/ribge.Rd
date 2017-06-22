@@ -14,4 +14,3 @@ This package has no affiliation to IBGE.
 \seealso{
 \url{http://www.ibge.gov.br/} & \url{https://github.com/tbrugz/ribge}
 }
-

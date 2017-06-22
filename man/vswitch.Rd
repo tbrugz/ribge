@@ -17,4 +17,3 @@ Vectorized \code{switch}
 \seealso{
 \code{\link{switch}} & \url{http://stackoverflow.com/a/25989828/616413}
 }
-

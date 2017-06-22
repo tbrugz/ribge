@@ -30,4 +30,3 @@ Returns a \code{data.frame} with a given series.
 \seealso{
 \url{http://seriesestatisticas.ibge.gov.br/}
 }
-

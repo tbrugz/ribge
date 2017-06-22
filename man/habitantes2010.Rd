@@ -4,12 +4,6 @@
 \name{habitantes2010}
 \alias{habitantes2010}
 \title{Municipalities population data from 2010 census.}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 5565 rows and 5 columns.}
-\usage{
-habitantes2010
-}
 \description{
 A \code{data.frame} with municipalities population data from 2010 census.
 }
-\keyword{datasets}
-

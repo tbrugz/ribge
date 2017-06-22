@@ -27,4 +27,3 @@ Downloads a given series by its code
 \seealso{
 \url{http://seriesestatisticas.ibge.gov.br/}
 }
-

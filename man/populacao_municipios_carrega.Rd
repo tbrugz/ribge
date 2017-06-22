@@ -24,4 +24,3 @@ Reads a file path with the population estimate file and returns a \code{data.fra
   df <- populacao_municipios_carrega(filename)
 }
 }
-

@@ -23,4 +23,3 @@ Returns a \code{data.frame} with area by municipality (in \code{km^2})
 \seealso{
 \url{http://www.ibge.gov.br/home/geociencias/cartografia/default_territ_area.shtm}
 }
-

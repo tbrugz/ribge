@@ -23,4 +23,3 @@ functions.
   df <- populacao_municipios(2014)
 }
 }
-
