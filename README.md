@@ -72,8 +72,9 @@ See also the [csv file](doc/ibge-tse-map.csv).
 IPEA's & BCB's series (non-IBGE)
 -----
 
-* Function to gather data from [Ipeadata](http://www.ipeadata.gov.br/)
-* Function to gather data from [BCB](http://www.bcb.gov.br/)'s [Time Series Management System](https://www.bcb.gov.br/?SGS)
+Function to gather data from [Ipeadata](http://www.ipeadata.gov.br/)
+
+Function to gather data from [BCB](http://www.bcb.gov.br/)'s [Time Series Management System](https://www.bcb.gov.br/?SGS)
 
 
 install & load
