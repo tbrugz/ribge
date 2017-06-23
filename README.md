@@ -69,6 +69,13 @@ Mapping between IBGE's & [TSE's](http://www.tse.jus.br/arquivos/tse-lista-de-mun
 See also the [csv file](doc/ibge-tse-map.csv).
 
 
+IPEA's & BCB's series (non-IBGE)
+-----
+
+* Function to gather data from [Ipeadata](http://www.ipeadata.gov.br/)
+* Function to gather data from [BCB](http://www.bcb.gov.br/)'s [Time Series Management System](https://www.bcb.gov.br/?SGS)
+
+
 install & load
 -----
 
@@ -137,6 +144,20 @@ TSE municipalities (see also the [csv file](doc/ibge-tse-map.csv)):
 tsemun <- tse_municipios()
 # mapping between ibge & tse municipalities codes
 data("municipioIbgeTseMap")
+```
+
+Ipeadata series:
+
+```
+# series 37667: real minimum wage / salário mínimo real
+df <- ipea_serie_carrega(37667)
+```
+
+Brazil's central bank (BCB) series:
+
+```
+# series 193: Fipe IPC price index / Índice de Preços ao Consumidor da Fipe
+df <- bcb_serie_carrega(193)
 ```
 
 
