@@ -16,7 +16,7 @@ Yearly population for municipalities. See:
 
 2010 [Census data](https://pt.wikipedia.org/wiki/Censo_demogr%C3%A1fico) gathered from: http://www.sidra.ibge.gov.br/bda/tabela/listabl.asp?z=t&o=25&i=P&c=1378
 
-years avaiable: 2000-2016
+years avaiable: 2000-2017
 
 
 data: GDP (gross domestic product) / PIB (produto interno bruto)
@@ -101,7 +101,7 @@ pop2009 <- populacao_municipios(2009)
 pop2010 <- populacao_municipios(2010)
 pop2011 <- populacao_municipios(2011, dir="/tmp")
 # ...
-pop2016 <- populacao_municipios(2016)
+pop2017 <- populacao_municipios(2017)
 
 ```
 
