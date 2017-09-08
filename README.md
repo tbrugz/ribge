@@ -18,6 +18,8 @@ Yearly population for municipalities. See:
 
 years avaiable: 2000-2017
 
+see [doc/populacao_sources.csv](doc/populacao_sources.csv)
+
 
 data: GDP (gross domestic product) / PIB (produto interno bruto)
 ----
