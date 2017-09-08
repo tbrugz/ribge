@@ -1,6 +1,6 @@
 Package: ribge
 Title: Loads data from IBGE
-Version: 0.0.0.9007
+Version: 0.0.0.9008
 Authors@R: person("Telmo", "Brugnara", email = "tbrugz@gmail.com", role = c("aut", "cre"))
 Description: Loads data from IBGE - population, GDP, price indexes,
     territory, ...
@@ -9,7 +9,7 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports:
-    dplyr,
+    dplyr (>= 0.7.0),
     readr,
     readxl,
     stringi,
