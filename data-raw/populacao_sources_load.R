@@ -38,3 +38,4 @@ ibge.populacao.sources <- dplyr::data_frame(ano=anos, links_dou, skip_dou, pop_o
 
 #devtools::use_data(ibge.populacao.sources)
 #devtools::use_data(ibge.populacao.sources, overwrite = TRUE)
+#readr::write_csv(ibge.populacao.sources, "doc/populacao_sources.csv")
