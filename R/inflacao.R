@@ -24,12 +24,22 @@ precos_inpc <- function(ano, dir=NULL) {
               ifelse(ano<=2011, "PC49_BR_PERC",
               #ifelse(ano<=2016, "PC52_BR_PERC",
               "PC52_BR_PERC")))
-  # FIXME: what about boundary years (1999 & 2006)? (2011/2012 is not a problem...)
-  file <- util.downloadSeries(resource, dir = dir)
+  # FIXedME: what about boundary years (1999 & 2006)? (2011/2012 is not a problem...)
+  #file <- util.downloadSeries(resource, dir = dir)
+  #loc <- readr::locale(decimal_mark = ",")
+  #df <- readr::read_tsv(file, locale = loc)
 
-  loc <- readr::locale(decimal_mark = ",")
-  df <- readr::read_tsv(file, locale = loc)
+  df <- series_estatisticas_carrega(resource, dir = dir)
   df <- inflacao.transform.df(df)
+
+  # boundary years
+  if(ano==1999 || ano==2006) {
+    resource2 <- ifelse(ano==1999, "PC40_BR_PERC", "PC49_BR_PERC")
+    df2 <- series_estatisticas_carrega(resource2, dir = dir)
+    df2 <- inflacao.transform.df(df2)
+    df <- rbind(df, df2)
+  }
+
   df[df$ano==ano,]
 }
 
@@ -83,13 +93,18 @@ precos_ipca <- function(ano, dir=NULL) {
               ifelse(ano<=2006, "IA48_BR_PERC",
               ifelse(ano<=2011, "IA55_BR_PERC",
               "IA59_BR_PERC")))
-  # FIXME: what about boundary years (1999 & 2006)? (2011/2012 is not a problem...)
-  file <- util.downloadSeries(resource, dir = dir)
-
-  loc <- readr::locale(decimal_mark = ",")
-  df <- readr::read_tsv(file, locale = loc)
-  #return(df)
+  # FIXedME: what about boundary years (1999 & 2006)? (2011/2012 is not a problem...)
+  df <- series_estatisticas_carrega(resource, dir = dir)
   df <- inflacao.transform.df(df)
+
+  # boundary years
+  if(ano==1999 || ano==2006) {
+    resource2 <- ifelse(ano==1999, "IA48_BR_PERC", "IA55_BR_PERC")
+    df2 <- series_estatisticas_carrega(resource2, dir = dir)
+    df2 <- inflacao.transform.df(df2)
+    df <- rbind(df, df2)
+  }
+
   df[df$ano==ano,]
 }
 
