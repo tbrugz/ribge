@@ -16,7 +16,7 @@ Yearly population for municipalities. See:
 
 2010 [Census data](https://pt.wikipedia.org/wiki/Censo_demogr%C3%A1fico) gathered from: http://www.sidra.ibge.gov.br/bda/tabela/listabl.asp?z=t&o=25&i=P&c=1378
 
-years avaiable: 2000-2017
+years avaiable: 2000-2018
 
 see [doc/populacao_sources.csv](doc/populacao_sources.csv)
 
@@ -104,6 +104,7 @@ pop2010 <- populacao_municipios(2010)
 pop2011 <- populacao_municipios(2011, dir="/tmp")
 # ...
 pop2017 <- populacao_municipios(2017)
+pop2018 <- populacao_municipios(2018)
 
 ```
 
