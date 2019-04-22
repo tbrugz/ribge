@@ -136,6 +136,8 @@ Gathering data from "séries estatísticas" (statistical series website):
 df <- series_estatisticas_carrega("PPM01_BR_ABS")
 # Docentes com curso superior no ensino médio, rede pública e privada
 df <- series_estatisticas_carrega("SEE10_BR_PERC", transpose = T)
+# Taxa de desocupação das pessoas de 10 anos ou mais de idade, por sexo - todas localidades
+df <- series_estatisticas_carrega_todas_localidades("PE62_RM_PERC", transpose = T)
 
 # Ver `seriesEstatisticas` para prefixos de códigos:
 seriesEstatisticas

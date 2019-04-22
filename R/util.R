@@ -123,6 +123,28 @@ series_estatisticas_carrega <- function(codigo, dir = ".", xtraurl = "", transpo
   df
 }
 
+#' Returns a \code{data.frame} with a given series for all localilies. Useful when series' geographic level
+#' (nivel) is distinct from 'BR'.
+#'
+#' @param codigo the series code
+#' @param dir directory for temporary (cache) files
+#' @param xtraurl extra parameter to include in the request URL
+#' @param transpose transpose the \code{data.frame}
+#' @seealso \url{http://seriesestatisticas.ibge.gov.br/}
+#' @return a \code{data.frame}
+#' @examples
+#' \dontrun{
+#'   df <- series_estatisticas_carrega_todas_localidades("PE62_RM_PERC", transpose=T)
+#' }
+#' @export
+series_estatisticas_carrega_todas_localidades <- function(codigo, dir = ".", xtraurl = "", transpose = FALSE) {
+  xtraurlfinal = "localidade=Todas"
+  if(xtraurl != "" && !is.null(xtraurl)) {
+    xtraurlfinal <- paste0(xtraurlfinal, "&", xtraurl)
+  }
+  return (series_estatisticas_carrega(codigo, dir = dir, xtraurl = xtraurlfinal, transpose = transpose))
+}
+
 # http://stackoverflow.com/a/25989828/616413
 #
 #' Vectorized \code{switch}
