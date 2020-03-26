@@ -1,7 +1,9 @@
 
+## setup data
+
 anos <- c(2000,
           2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,
-          2011,2012,2013,2014,2015,2016,2017,2018)
+          2011,2012,2013,2014,2015,2016,2017,2018,2019)
 links_dou <- c(
   '/Estimativas_2000/UF_Municipio.zip',
   '/Estimativas_2001/UF_Municipio.zip',
@@ -21,22 +23,25 @@ links_dou <- c(
   '/Estimativas_2015/estimativa_dou_2015_20150915.xls',
   '/Estimativas_2016/estimativa_dou_2016_20160913.xlsx',
   '/Estimativas_2017/estimativa_dou_2017.xls',
-  '/Estimativas_2018/estimativa_dou_2018.xls'
+  '/Estimativas_2018/estimativa_dou_2018_20181019.xls',
+  '/Estimativas_2019/estimativa_dou_2019.xls'
 )
 link_prepend <- 'ftp://ftp.ibge.gov.br/Estimativas_de_Populacao'
 links_dou <- ifelse(grepl("^http|ftp", links_dou), links_dou, paste0(link_prepend, links_dou))
 # skip_dou: NA == 2
 skip_dou <- c(NA,
               4,4,4,4,4,4,3,4,4,NA,
-              NA,NA,NA,NA,NA,NA,1,1)
+              NA,NA,NA,NA,NA,NA,1,1,1)
 # pop_origem: NA == Estimativa
 pop_origem <- c(NA,
                 NA,NA,NA,NA,NA,NA,"Contagem",NA,NA,"Censo",
-                NA,NA,NA,NA,NA,NA,NA,NA)
-ibge.populacao.sources <- dplyr::data_frame(ano=anos, links_dou, skip_dou, pop_origem)
+                NA,NA,NA,NA,NA,NA,NA,NA,NA)
+ibge.populacao.sources <- dplyr::tibble(ano=anos, links_dou, skip_dou, pop_origem)
 #rm(anos, links_dou, skip_dou, pop_origem, link_prepend)
-#save(ibge.populacao.sources, file = "data/populacao-sources.RData")
 
-#devtools::use_data(ibge.populacao.sources)
-#devtools::use_data(ibge.populacao.sources, overwrite = TRUE)
+## update data
+
+##save(ibge.populacao.sources, file = "data/populacao-sources.RData")
+##usethis::use_data(ibge.populacao.sources)
+#usethis::use_data(ibge.populacao.sources, overwrite = TRUE)
 #readr::write_csv(ibge.populacao.sources, "doc/populacao_sources.csv")

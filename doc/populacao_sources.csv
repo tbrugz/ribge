@@ -1,5 +1,5 @@
 ano,links_dou,skip_dou,pop_origem
-2e3,ftp://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2000/UF_Municipio.zip,NA,NA
+2000,ftp://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2000/UF_Municipio.zip,NA,NA
 2001,ftp://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2001/UF_Municipio.zip,4,NA
 2002,ftp://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2002/UF_Municipio.zip,4,NA
 2003,ftp://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2003/UF_Municipio.zip,4,NA
@@ -17,4 +17,5 @@ ano,links_dou,skip_dou,pop_origem
 2015,ftp://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2015/estimativa_dou_2015_20150915.xls,NA,NA
 2016,ftp://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2016/estimativa_dou_2016_20160913.xlsx,NA,NA
 2017,ftp://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2017/estimativa_dou_2017.xls,1,NA
-2018,ftp://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2018/estimativa_dou_2018.xls,1,NA
+2018,ftp://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2018/estimativa_dou_2018_20181019.xls,1,NA
+2019,ftp://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2019/estimativa_dou_2019.xls,1,NA
