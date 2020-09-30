@@ -26,7 +26,7 @@ data: GDP (gross domestic product) / PIB (produto interno bruto)
 
 Municipalities GDP. See: [Produto Interno Bruto dos Municípios](http://www.ibge.gov.br/home/estatistica/economia/pibmunicipios/) & [Produto Interno Bruto dos Municípios 2011](http://www.ibge.gov.br/home/estatistica/economia/pibmunicipios/2011/default_base.shtm)
 
-years avaiable: 1999-2013
+years avaiable: 1999-2017
 
 
 data: cartography/territory
@@ -120,7 +120,15 @@ pop2020 <- populacao_municipios(2020)
 GDP (PIB) example:
 
 ```
-pib2013 <- pib_municipios(2013)
+# 18 variables
+pib1999 <- pib_municipios(1999)
+# ...
+pib2009 <- pib_municipios(2009)
+
+# 43 variables
+pib2010 <- pib_municipios(2010)
+# ...
+pib2017 <- pib_municipios(2017)
 ```
 
 inflation & GDP deflator:
