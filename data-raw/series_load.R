@@ -21,7 +21,7 @@ urlnomes <- c(
   'MUN' # municipios
 )
 
-links <- data_frame(url= urls, nivel= urlnomes)
+links <- tibble(url= urls, nivel= urlnomes)
 
 read_tt <- function (url) {
   message(paste0("downloading: ", url))
@@ -56,10 +56,10 @@ for(i in 1:nrow(links)) {
 #Código, Séries Cadastradas, Periodicidade, Período
 colnames(bigdf) <- c("codigo", "descricao", "periodicidade", "periodo", "nivel")
 #bigdf[big]
-seriesEstatisticas1 <- filter(bigdf, codigo != "Código") %>% arrange(codigo, nivel) %>% distinct()
+#seriesEstatisticas1 <- filter(bigdf, codigo != "Código") %>% arrange(codigo, nivel) %>% distinct()
 
 seriesEstatisticas <- filter(bigdf, codigo != "Código") %>% arrange(codigo, nivel) %>%
   group_by(codigo, descricao, periodicidade, periodo) %>%
-  summarise(niveis = paste(nivel, collapse=",")) %>% arrange(codigo)
+  summarise(niveis = paste(nivel, collapse=",")) %>% arrange(codigo) %>% ungroup()
 
-#devtools::use_data(seriesEstatisticas, overwrite = TRUE)
+usethis::use_data(seriesEstatisticas, overwrite = TRUE)

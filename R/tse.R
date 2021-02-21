@@ -18,8 +18,6 @@ tse_municipios <- function(dir=".") {
   df
 }
 
-tse.load.municipios <- tse_municipios
-
 #-- export
 id4join <- function(nomejoin) {
   nomejoin <- stringi::stri_trans_general(toupper(nomejoin), "Latin-ASCII")

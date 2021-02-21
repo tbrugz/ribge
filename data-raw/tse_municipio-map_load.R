@@ -23,7 +23,7 @@ id4join <- function(nomejoin) {
   nomejoin <- gsub("AUGUSTOSEVERO","CAMPOGRANDE", nomejoin)
 }
 
-f <- tse.load.municipios()
+f <- tse_municipios()
 #f$nomejoin <- stri_trans_general(f$nome, "Latin-ASCII")
 #f$nomejoin <- gsub("D[E|O] ","D", f$nomejoin)
 #f$nomejoin <- gsub("'|[ ]+|-","", f$nomejoin)
