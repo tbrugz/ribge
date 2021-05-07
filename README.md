@@ -128,7 +128,7 @@ pib2009 <- pib_municipios(2009)
 # 43 variables
 pib2010 <- pib_municipios(2010)
 # ...
-pib2017 <- pib_municipios(2017)
+pib2018 <- pib_municipios(2018)
 ```
 
 inflation & GDP deflator:

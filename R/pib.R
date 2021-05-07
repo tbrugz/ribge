@@ -10,21 +10,19 @@
 #' }
 #' @export
 pib_municipios <- function(ano = NA, dir = ".") {
-  if(!is.na(ano) && (ano < 1999 || ano > 2017)) {
+  if(!is.na(ano) && (ano < 1999 || ano > 2018)) {
     stop(paste("data not avaiable for year",ano))
   }
 
-  url <- "ftp://ftp.ibge.gov.br/Pib_Municipios/2012/base/base_1999_2012_xlsx.zip"
   # 1999-2009
+  url <- "https://ftp.ibge.gov.br/Pib_Municipios/2012/base/base_1999_2012_xlsx.zip"
   colnames <- c("ano", "codigo_uf", "nome_uf", "cod_municipio", "nome_munic",
                 "nome_metro", "codigo_meso", "nome_meso", "codigo_micro", "nome_micro",
                 "vab_agropecuaria", "vab_industria", "vab_servicos", "vab_adm_publica", "impostos",
                 "pib_total", "populacao", "pib_per_capita")
-  #if(is.na(ano)) {}
-  #else
   if(is.na(ano) || ano >= 2010) {
     # 2010-2017
-    url <- "ftp://ftp.ibge.gov.br/Pib_Municipios/2017/base/base_de_dados_2010_2017_xls.zip"
+    url <- "https://ftp.ibge.gov.br/Pib_Municipios/2018/base/base_de_dados_2010_2018_xls.zip"
     colnames <- c("ano", "codigo_regiao", "nome_regiao",
                   "codigo_uf", "sigla_uf", "nome_uf",
                   "cod_municipio", "nome_munic", "nome_metro",
