@@ -2,17 +2,17 @@
 ribge R package
 ======
 
-[R](https://www.r-project.org/) package for (down)loading data from [IBGE](http://www.ibge.gov.br/) (Instituto Brasileiro de Geografia e Estatística)
+[R](https://www.r-project.org/) package for (down)loading data from [IBGE](https://www.ibge.gov.br/) (Instituto Brasileiro de Geografia e Estatística)
 
 
 data: population
 ----
 
 Yearly population for municipalities. See:
-[Estimativas de População - 2015 - DOU](http://www.ibge.gov.br/home/estatistica/populacao/estimativa2015/estimativa_dou.shtm) &
-[estatísticas/Estimativas de Populacao](http://downloads.ibge.gov.br/downloads_estatisticas.htm?caminho=/Estimativas_de_Populacao/) (or ftp://ftp.ibge.gov.br/Estimativas_de_Populacao/)
+[Estimativas de População](https://www.ibge.gov.br/estatisticas/sociais/populacao/9103-estimativas-de-populacao.html) &
+[estatísticas/Estimativas de Populacao](https://downloads.ibge.gov.br/downloads_estatisticas.htm?caminho=/Estimativas_de_Populacao/) (or ftp://ftp.ibge.gov.br/Estimativas_de_Populacao/)
 
-2007 data comes from [Contegem da população](https://pt.wikipedia.org/wiki/Contagem_de_popula%C3%A7%C3%A3o): see http://www.ibge.gov.br/home/estatistica/populacao/contagem2007/
+2007 data comes from [Contegem da população](https://pt.wikipedia.org/wiki/Contagem_de_popula%C3%A7%C3%A3o): see https://www.ibge.gov.br/estatisticas/sociais/populacao/9065-contagem-da-populacao.html
 
 2010 [Census data](https://pt.wikipedia.org/wiki/Censo_demogr%C3%A1fico) gathered from: http://www.sidra.ibge.gov.br/bda/tabela/listabl.asp?z=t&o=25&i=P&c=1378
 
@@ -24,15 +24,17 @@ see [doc/populacao_sources.csv](doc/populacao_sources.csv)
 data: GDP (gross domestic product) / PIB (produto interno bruto)
 ----
 
-Municipalities GDP. See: [Produto Interno Bruto dos Municípios](http://www.ibge.gov.br/home/estatistica/economia/pibmunicipios/) & [Produto Interno Bruto dos Municípios 2011](http://www.ibge.gov.br/home/estatistica/economia/pibmunicipios/2011/default_base.shtm)
+Municipalities GDP. See: [Produto Interno Bruto dos Municípios](https://www.ibge.gov.br/estatisticas/economicas/contas-nacionais/9088-produto-interno-bruto-dos-municipios.html)
 
-years avaiable: 1999-2017
+years avaiable: 1999-2018
 
 
 data: cartography/territory
 ----
 
-Municipalities area. See: [Cartografia » Área Territorial Brasileira](http://www.ibge.gov.br/home/geociencias/cartografia/default_territ_area.shtm)
+Municipalities area. See: [Geociências » Organização do território » Estrutura territorial » Áreas Territoriais](https://www.ibge.gov.br/geociencias/organizacao-do-territorio/estrutura-territorial/15761-areas-dos-municipios.html)
+
+years avaiable: 2015, 2020
 
 
 data: price indexes & GDP deflator
@@ -46,7 +48,7 @@ IPCA index. See: [Índice de preços » IPCA - Índice Nacional de Preços ao Co
 
 years avaiable: 1991+
 
-SINAPI construction price index. See: [Sistema Nacional de Pesquisa de Custos e Índices da Construção Civil](http://www.ibge.gov.br/home/estatistica/indicadores/precos/sinapi/) & [índice de preços » índices da construção civil](http://seriesestatisticas.ibge.gov.br/lista_tema.aspx?op=0&de=39&no=11)
+SINAPI construction price index. See: [Sistema Nacional de Pesquisa de Custos e Índices da Construção Civil](https://www.ibge.gov.br/estatisticas/economicas/precos-e-custos/9270-sistema-nacional-de-pesquisa-de-custos-e-indices-da-construcao-civil.html) & [índice de preços » índices da construção civil](http://seriesestatisticas.ibge.gov.br/lista_tema.aspx?op=0&de=39&no=11)
 
 years avaiable: 1986+
 
@@ -143,7 +145,8 @@ deflatorpib <- precos_deflatorpib()
 municipalities area:
 
 ```
-munArea <- area_municipios()
+munArea <- area_municipios()              # defaults to 2020
+munArea <- area_municipios(ano = 2015)
 ```
 
 Gathering data from "séries estatísticas" (statistical series website):
