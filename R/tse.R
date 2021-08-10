@@ -1,21 +1,14 @@
 
 #' Returns a \code{data.frame} with municipalities from TSE (Tribunal Superior Eleitoral)
 #'
-#' @param dir directory for temporary files
 #' @return the \code{data.frame}
 #' @examples
 #' \dontrun{
 #'   df <- tse_municipios()
 #' }
 #' @export
-tse_municipios <- function(dir=".") {
-  url <- "http://www.tse.jus.br/arquivos/tse-lista-de-municipios-do-cadastro-da-justica-eleitoral/at_download/file"
-  file <- util.downloadAndUnzip(url, dir=dir, file="lista_municipios.zip")
-  loc <- readr::locale(encoding = "ISO-8859-1")
-  #print(file)
-  df <- readr::read_csv2(file, locale = loc)
-  names(df) <- c("cod_municipio_tse", "uf", "nome_municipio")
-  df
+tse_municipios <- function() {
+  force(tseMunicipios)
 }
 
 #-- export

@@ -28,7 +28,7 @@ id4join <- function(nomejoin) {
   #nomejoin <- gsub("AUGUSTOSEVERO","CAMPOGRANDE", nomejoin)
 }
 
-f <- tse_municipios()
+f <- tse_municipios() %>% filter(uf != "ZZ")
 #f$nomejoin <- stri_trans_general(f$nome, "Latin-ASCII")
 #f$nomejoin <- gsub("D[E|O] ","D", f$nomejoin)
 #f$nomejoin <- gsub("'|[ ]+|-","", f$nomejoin)
@@ -70,6 +70,7 @@ z1 <- merged[is.na(merged$cod_municipio_tse),]
 z2 <- merged[is.na(merged$cod_municipio),]
 z3 <- rbind(z1, z2) %>% arrange(nomejoin)
 print( paste("z3 nrow:", nrow(z3)) )
+z3
 
 #
 # full_join errors (after upper()):

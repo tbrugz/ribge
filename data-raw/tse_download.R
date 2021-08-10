@@ -51,11 +51,6 @@ names(tseMunicipios2020) <- c("uf", "cod_municipio_tse", "nome_municipio_tse")
 
 download.file("https://cdn.tse.jus.br/estatistica/sead/odsele/perfil_eleitorado/perfil_eleitorado_ATUAL.zip", "perfil_eleitorado_ATUAL.zip");
 
-df <- readr::read_csv2(
-  #unz(description = "perfil_eleitorado_ATUAL.zip", filename = "perfil_eleitorado_ATUAL.csv"),
-  "perfil_eleitorado_ATUAL.head.csv",
-  locale = loc)
-
 zonas <- readr::read_csv2(
   unz(description = "perfil_eleitorado_ATUAL.zip", filename = "perfil_eleitorado_ATUAL.csv"),
   #"perfil_eleitorado_ATUAL.head.csv",
