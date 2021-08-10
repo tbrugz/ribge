@@ -68,9 +68,11 @@ See avaiable series codes on [doc/seriesEstatisticas.md](doc/seriesEstatisticas.
 municipalities codes: ibge/tse mapping
 -----
 
-Mapping between IBGE's & [TSE's](http://www.tse.jus.br/arquivos/tse-lista-de-municipios-do-cadastro-da-justica-eleitoral/view) municipalities codes.
+Mapping between IBGE's & TSE's municipalities names and codes.
 
-See also the [csv file](doc/ibge-tse-map.csv).
+Also avaiable as CSV file: [IBGE vs TSE municipalities mapping](doc/ibge-tse-map.csv).
+
+See also [TSE's municipalities csv file](doc/tse-municipios.csv) and [TSE's municipalities with zones csv file](doc/tse-zonas-eleitorais.csv)
 
 
 IPEA's & BCB's series (non-IBGE)
@@ -164,7 +166,7 @@ seriesEstatisticas
 View(seriesEstatisticas)
 ```
 
-TSE municipalities (see also the [csv file](doc/ibge-tse-map.csv)):
+TSE municipalities:
 
 ```
 tsemun <- tse_municipios()
