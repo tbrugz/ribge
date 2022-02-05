@@ -28,7 +28,7 @@ populacao_municipios_download <- ibge.download.populacao.estimativa <- function(
   #if(!grepl("^http|ftp", download_url)) {
   #  download_url <- paste0(link_prepend, download_url)
   #}
-  download.file(url, filename_download)
+  download.file(url, filename_download, mode = "wb")
   return(filename_download)
 }
 

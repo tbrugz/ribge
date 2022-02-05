@@ -25,7 +25,7 @@ util.download <- function(url, dir=NULL, file=NULL, alwaysDownload=F) {
 
   filename_download <- paste0(dir, filename)
   if( alwaysDownload || (!file.exists(filename_download)) ) {
-    download.file(url, filename_download)
+    download.file(url, filename_download, mode = "wb")
   }
   return(filename_download)
 }
