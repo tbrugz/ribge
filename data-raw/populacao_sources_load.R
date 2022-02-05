@@ -13,7 +13,7 @@ links_dou <- c(
   '/Estimativas_2004/UF_Municipio.zip',
   '/Estimativas_2005/UF_Municipio.zip',
   '/Estimativas_2006/UF_Municipio.zip',
-  'http://www.ibge.gov.br/home/estatistica/populacao/contagem2007/popmunic2007layoutTCU14112007.xls', # contagem 2007
+  'https://www.ibge.gov.br/home/estatistica/populacao/contagem2007/popmunic2007layoutTCU14112007.xls', # contagem 2007
   '/Estimativas_2008/UF_Municipio.zip',
   '/Estimativas_2009/UF_Municipio.zip',
   '', # 2010 census
@@ -29,8 +29,8 @@ links_dou <- c(
   '/Estimativas_2020/estimativa_dou_2020.xls',
   '/Estimativas_2021/estimativa_dou_2021.xls'
 )
-link_prepend <- 'ftp://ftp.ibge.gov.br/Estimativas_de_Populacao'
-links_dou <- ifelse(grepl("^http|ftp", links_dou), links_dou, paste0(link_prepend, links_dou))
+link_prepend <- 'https://ftp.ibge.gov.br/Estimativas_de_Populacao'
+links_dou <- ifelse(grepl("^http", links_dou), links_dou, paste0(link_prepend, links_dou))
 # skip_dou: NA == 2
 skip_dou <- c(NA,
               4,4,4,4,4,4,3,4,4,NA,
@@ -48,5 +48,5 @@ ibge.populacao.sources <- dplyr::tibble(ano=anos, links_dou, skip_dou, pop_orige
 
 ##save(ibge.populacao.sources, file = "data/populacao-sources.RData")
 ##usethis::use_data(ibge.populacao.sources)
-#usethis::use_data(ibge.populacao.sources, overwrite = TRUE)
-#readr::write_csv(ibge.populacao.sources, "doc/populacao_sources.csv")
+usethis::use_data(ibge.populacao.sources, overwrite = TRUE)
+readr::write_csv(ibge.populacao.sources, "doc/populacao_sources.csv")
