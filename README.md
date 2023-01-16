@@ -118,6 +118,7 @@ pop2010 <- populacao_municipios(2010)
 pop2011 <- populacao_municipios(2011, dir="/tmp")
 # ...
 pop2021 <- populacao_municipios(2021)
+pop2022 <- populacao_municipios(2022)
 
 ```
 
