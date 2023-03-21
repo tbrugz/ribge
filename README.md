@@ -16,7 +16,7 @@ Yearly population for municipalities. See:
 
 2010 [Census data](https://pt.wikipedia.org/wiki/Censo_demogr%C3%A1fico) gathered from: http://www.sidra.ibge.gov.br/bda/tabela/listabl.asp?z=t&o=25&i=P&c=1378
 
-years avaiable: 2000-2021
+years avaiable: 2000-2022
 
 see [doc/populacao_sources.csv](doc/populacao_sources.csv)
 
@@ -26,7 +26,7 @@ data: GDP (gross domestic product) / PIB (produto interno bruto)
 
 Municipalities GDP. See: [Produto Interno Bruto dos Municípios](https://www.ibge.gov.br/estatisticas/economicas/contas-nacionais/9088-produto-interno-bruto-dos-municipios.html)
 
-years avaiable: 1999-2018
+years avaiable: 1999-2020
 
 
 data: cartography/territory
@@ -133,7 +133,7 @@ pib2009 <- pib_municipios(2009)
 # 43 variables
 pib2010 <- pib_municipios(2010)
 # ...
-pib2018 <- pib_municipios(2018)
+pib2020 <- pib_municipios(2020)
 ```
 
 inflation & GDP deflator:
