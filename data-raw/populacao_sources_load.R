@@ -28,7 +28,7 @@ links_dou <- c(
   '/Estimativas_2019/estimativa_dou_2019.xls',
   '/Estimativas_2020/estimativa_dou_2020.xls',
   '/Estimativas_2021/estimativa_dou_2021.xls',
-  'https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Previa_da_Populacao/POP2022_Municipios.xls'
+  'https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Previa_da_Populacao/POP2022_Municipios_20230622.xls'
 )
 link_prepend <- 'https://ftp.ibge.gov.br/Estimativas_de_Populacao'
 links_dou <- ifelse(grepl("^http", links_dou), links_dou, paste0(link_prepend, links_dou))
