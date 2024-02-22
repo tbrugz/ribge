@@ -60,7 +60,7 @@ util.downloadAndUnzip <- function(url, dir=NULL, file=NULL, alwaysDownload=F) {
 #' @export
 util.unzip <- function(src, exdir, unzip = getOption("unzip")) {
   if (unzip == "internal") {
-    return(unzip(src, exdir = exdir))
+    return(unzip(src, overwrite = TRUE, exdir = exdir))
   }
 
   args <- paste(
