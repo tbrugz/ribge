@@ -4,8 +4,7 @@
 \alias{series_estatisticas_carrega}
 \title{Returns a \code{data.frame} with a given series.}
 \usage{
-series_estatisticas_carrega(codigo, dir = ".", xtraurl = "",
-  transpose = FALSE)
+series_estatisticas_carrega(codigo, dir = ".", xtraurl = "", transpose = FALSE)
 }
 \arguments{
 \item{codigo}{the series code}

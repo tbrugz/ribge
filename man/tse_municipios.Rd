@@ -4,10 +4,7 @@
 \alias{tse_municipios}
 \title{Returns a \code{data.frame} with municipalities from TSE (Tribunal Superior Eleitoral)}
 \usage{
-tse_municipios(dir = ".")
-}
-\arguments{
-\item{dir}{directory for temporary files}
+tse_municipios()
 }
 \value{
 the \code{data.frame}

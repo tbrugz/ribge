@@ -4,9 +4,11 @@
 \alias{area_municipios}
 \title{Returns a \code{data.frame} with area by municipality (in \code{km^2})}
 \usage{
-area_municipios(dir = ".")
+area_municipios(ano = 2020, dir = ".")
 }
 \arguments{
+\item{ano}{year of the information}
+
 \item{dir}{directory for temporary files}
 }
 \value{
@@ -17,7 +19,7 @@ Returns a \code{data.frame} with area by municipality (in \code{km^2})
 }
 \examples{
 \dontrun{
-  df <- area_municipios("~/tmp")
+  df <- area_municipios(ano = 2020, dir = "~/tmp")
 }
 }
 \seealso{

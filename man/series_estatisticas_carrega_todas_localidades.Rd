@@ -2,10 +2,15 @@
 % Please edit documentation in R/util.R
 \name{series_estatisticas_carrega_todas_localidades}
 \alias{series_estatisticas_carrega_todas_localidades}
-\title{Returns a \code{data.frame} with a given series for all localilies.}
+\title{Returns a \code{data.frame} with a given series for all localilies. Useful when series' geographic level
+(nivel) is distinct from 'BR'.}
 \usage{
-series_estatisticas_carrega_todas_localidades(codigo, dir = ".",
-  xtraurl = "", transpose = FALSE)
+series_estatisticas_carrega_todas_localidades(
+  codigo,
+  dir = ".",
+  xtraurl = "",
+  transpose = FALSE
+)
 }
 \arguments{
 \item{codigo}{the series code}
@@ -20,11 +25,12 @@ series_estatisticas_carrega_todas_localidades(codigo, dir = ".",
 a \code{data.frame}
 }
 \description{
-Returns a \code{data.frame} with a given series for all localilies.
+Returns a \code{data.frame} with a given series for all localilies. Useful when series' geographic level
+(nivel) is distinct from 'BR'.
 }
 \examples{
 \dontrun{
-  df <- series_estatisticas_carrega_todas_localidades("CD99_BR_ABS", transpose=T)
+  df <- series_estatisticas_carrega_todas_localidades("PE62_RM_PERC", transpose=T)
 }
 }
 \seealso{

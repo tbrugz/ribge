@@ -3,7 +3,6 @@
 \docType{package}
 \name{ribge}
 \alias{ribge}
-\alias{ribge-package}
 \title{ribge: package for (down)loading data from IBGE.}
 \description{
 ribge is a package for (down)loading data from IBGE - Instituto Brasileiro de Geografia e Estatística.
