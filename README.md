@@ -99,6 +99,7 @@ build from sources & load
 # install.packages("devtools")
 devtools::install_deps(".")
 devtools::install(".")
+#devtools::check(".")
 library(ribge)
 ```
 
