@@ -7,6 +7,9 @@ ribge_*.tar.gz
 ribge.Rcheck
 tmp
 
+docProps/*
+xl/*
+
 *.csv
 *.html
 *.xls
