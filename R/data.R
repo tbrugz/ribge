@@ -36,3 +36,12 @@ NULL
 #"seriesEstatisticas"
 NULL
 
+
+#' Municipalities from TSE website
+#'
+#' @seealso \url{https://dadosabertos.tse.jus.br/dataset/eleitorado-atual}
+#'
+#' @name tseMunicipios
+#' @docType data
+#"tseMunicipios"
+NULL
