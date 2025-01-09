@@ -118,6 +118,10 @@ populacao_municipios <- function(ano, dir=".") {
     stop(paste("data not avaiable for year",ano))
   }
 
+  #if(is.na( ribge::ibge.populacao.sources[ribge::ibge.populacao.sources$ano==ano,]$links_dou )) {
+  #  stop(paste("data not avaiable (NA) for year",ano))
+  #}
+
   # census data
   if(ano==2010) {
     df <- ribge::habitantes2010
