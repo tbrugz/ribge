@@ -16,7 +16,7 @@ Yearly population for municipalities. See:
 
 2010 [Census data](https://pt.wikipedia.org/wiki/Censo_demogr%C3%A1fico) gathered from: http://www.sidra.ibge.gov.br/bda/tabela/listabl.asp?z=t&o=25&i=P&c=1378
 
-years avaiable: 2000-2022,2024
+years avaiable: 2000-2022,2024-2025
 
 see [doc/populacao_sources.csv](doc/populacao_sources.csv)
 
@@ -96,8 +96,9 @@ build from sources & load
 -----
 
 ```
-# install.packages("devtools")
+#install.packages("devtools")
 devtools::install_deps(".")
+# check folder 'data-raw': if changes were made, changed scripts may need to be run
 devtools::install(".")
 #devtools::document()
 #devtools::check(".")
@@ -121,7 +122,9 @@ pop2011 <- populacao_municipios(2011, dir="/tmp")
 # ...
 pop2021 <- populacao_municipios(2021)
 pop2022 <- populacao_municipios(2022)
+# 2023 not available
 pop2024 <- populacao_municipios(2024)
+pop2025 <- populacao_municipios(2025)
 ```
 
 GDP (PIB) example:
