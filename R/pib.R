@@ -10,7 +10,7 @@
 #' }
 #' @export
 pib_municipios <- function(ano = NA, dir = ".") {
-  if(!is.na(ano) && (ano < 1999 || ano > 2021)) {
+  if(!is.na(ano) && (ano < 1999 || ano > 2023)) {
     stop(paste("data not avaiable for year",ano))
   }
 
@@ -21,8 +21,8 @@ pib_municipios <- function(ano = NA, dir = ".") {
                 "vab_agropecuaria", "vab_industria", "vab_servicos", "vab_adm_publica", "impostos",
                 "pib_total", "populacao", "pib_per_capita")
   if(is.na(ano) || ano >= 2010) {
-    # 2010-2021
-    url <- "https://ftp.ibge.gov.br/Pib_Municipios/2021/base/base_de_dados_2010_2021_xlsx.zip"
+    # 2010-2023
+    url <- "https://ftp.ibge.gov.br/Pib_Municipios/2022_2023/base/base_de_dados_2010_2023_xlsx.zip"
     colnames <- c("ano", "codigo_regiao", "nome_regiao",
                   "codigo_uf", "sigla_uf", "nome_uf",
                   "cod_municipio", "nome_munic", "nome_metro",
