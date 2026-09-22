@@ -12,12 +12,25 @@
 ###
 
 library(dplyr)
-loc <- readr::locale(encoding = "ISO-8859-1")
+library(httr)
 
-download.file("https://cdn.tse.jus.br/estatistica/sead/odsele/detalhe_votacao_munzona/detalhe_votacao_munzona_2020.zip", "detalhe_votacao_munzona_2020.zip");
+loc <- readr::locale(encoding = "ISO-8859-1")
+user_agent <- "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36";
+#options(HTTPUserAgent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36")
+#options(timeout = 900)
+
+#https://cdn.tse.jus.br/estatistica/sead/odsele/detalhe_votacao_munzona/detalhe_votacao_munzona_2024.zip
+#https://cdn.tse.jus.br/estatistica/sead/odsele/detalhe_votacao_secao/detalhe_votacao_secao_2024.zip
+
+#download.file("https://cdn.tse.jus.br/estatistica/sead/odsele/detalhe_votacao_munzona/detalhe_votacao_munzona_2020.zip", "detalhe_votacao_munzona_2020.zip", method = "libcurl", extra = "-L -A 'Mozilla/5.0'");
+GET(url = "https://cdn.tse.jus.br/estatistica/sead/odsele/detalhe_votacao_munzona/detalhe_votacao_munzona_2022.zip",
+    write_disk("detalhe_votacao_munzona_2022.zip", overwrite = TRUE),
+    user_agent(user_agent),
+    config(ssl_verifypeer = FALSE)
+    )
 
 df <- readr::read_csv2(
-  unz(description = "detalhe_votacao_munzona_2020.zip", filename = "detalhe_votacao_munzona_2020_BRASIL.csv"),
+  unz(description = "detalhe_votacao_munzona_2022.zip", filename = "detalhe_votacao_munzona_2022_BRASIL.csv"),
   locale = loc)
 
 # SG_UF,SG_UE,NM_UE,CD_MUNICIPIO,NM_MUNICIPIO,NR_ZONA
@@ -27,29 +40,36 @@ zonas <- df %>%
   distinct()
 
 #mun0 <- df %>% select("SG_UF","SG_UE","NM_UE","CD_MUNICIPIO","NM_MUNICIPIO") %>% distinct()
-tseMunicipios2020 <- df %>%
-  select("SG_UF","CD_MUNICIPIO","NM_MUNICIPIO")
+tseMunicipios <- df %>%
+  select("SG_UF","CD_MUNICIPIO","NM_MUNICIPIO") %>%
+  distinct()
 
 # add: Brasilia
 # add: Fernando de Noronha
 # https://noticias.uol.com.br/eleicoes/2020/11/13/fernando-de-noronha-nao-tem-eleicao-para-prefeito.htm
-tseMunicipios2020 <- tseMunicipios2020 %>%
-  add_row(SG_UF="DF",CD_MUNICIPIO="97012",NM_MUNICIPIO="BRASÍLIA") %>%
-  add_row(SG_UF="PE",CD_MUNICIPIO="30015",NM_MUNICIPIO="FERNANDO DE NORONHA")
+#tseMunicipios2020 <- tseMunicipios2020 %>%
+#  add_row(SG_UF="DF",CD_MUNICIPIO="97012",NM_MUNICIPIO="BRASÍLIA") %>%
+#  add_row(SG_UF="PE",CD_MUNICIPIO="30015",NM_MUNICIPIO="FERNANDO DE NORONHA")
 
-tseMunicipios2020 <- tseMunicipios2020 %>%
-  distinct() %>%
+tseMunicipios <- tseMunicipios %>%
   arrange(CD_MUNICIPIO)
 
-names(tseMunicipios2020) <- c("uf", "cod_municipio_tse", "nome_municipio_tse")
+names(tseMunicipios) <- c("uf", "cod_municipio_tse", "nome_municipio_tse")
 
-##write_csv(tseMunicipios2020, file = "doc/tse-municipios.csv")
+print( paste("num municipios BR =", count(filter(tseMunicipios, uf != 'ZZ'))) )
 
-##usethis::use_data(tseMunicipios2020, overwrite = TRUE)
+##readr::write_csv(tseMunicipios, file = "doc/tse-municipios.csv")
+
+##usethis::use_data(tseMunicipios, overwrite = TRUE)
 
 ####
 
-download.file("https://cdn.tse.jus.br/estatistica/sead/odsele/perfil_eleitorado/perfil_eleitorado_ATUAL.zip", "perfil_eleitorado_ATUAL.zip");
+#download.file("https://cdn.tse.jus.br/estatistica/sead/odsele/perfil_eleitorado/perfil_eleitorado_ATUAL.zip", "perfil_eleitorado_ATUAL.zip");
+GET(url = "https://cdn.tse.jus.br/estatistica/sead/odsele/perfil_eleitorado/perfil_eleitorado_ATUAL.zip",
+    write_disk("perfil_eleitorado_ATUAL.zip", overwrite = TRUE),
+    user_agent(user_agent),
+    config(ssl_verifypeer = FALSE)
+)
 
 zonas <- readr::read_csv2(
   unz(description = "perfil_eleitorado_ATUAL.zip", filename = "perfil_eleitorado_ATUAL.csv"),
@@ -76,7 +96,7 @@ tseMunicipios <- zonas %>%
 
 #View(filter(zonas, uf == "ZZ"))
 
-#write_csv(tseMunicipios, file = "doc/tse-municipios.csv")
+#readr::write_csv(tseMunicipios, file = "doc/tse-municipios.csv")
 #usethis::use_data(tseMunicipios, overwrite = TRUE)
 
-#write_csv(zonas, file = "doc/tse-zonas-eleitorais.csv")
+#readr::write_csv(zonas, file = "doc/tse-zonas-eleitorais.csv")
