@@ -97,7 +97,7 @@ build from sources & load
 
 ```
 #install.packages("devtools")
-devtools::install_deps(".")
+pak::local_install_deps()
 # check folder 'data-raw': if changes were made, changed scripts may need to be run
 devtools::install(".")
 #devtools::document()

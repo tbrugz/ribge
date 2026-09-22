@@ -1,5 +1,6 @@
 
 library(dplyr)
+library(ribge)
 
 id4join <- function(nomejoin) {
   nomejoin <- stringi::stri_trans_general(toupper(nomejoin), "Latin-ASCII")
@@ -12,9 +13,12 @@ id4join <- function(nomejoin) {
   nomejoin <- gsub("Z","S", nomejoin)
 
   nomejoin <- gsub("ASSU","ACU", nomejoin)
-  nomejoin <- gsub("CAMACAN","CAMACA", nomejoin)
+  #nomejoin <- gsub("CAMACAN","CAMACA", nomejoin)
   nomejoin <- gsub("JANUARIOCICCO","BOASAUDE", nomejoin)
   nomejoin <- gsub("SAOTHOMEDASLETRAS","SAOTOMEDASLETRAS", nomejoin)
+  # https://portal.al.go.leg.br/noticias/163470/municipio-de-bom-jesus-passa-a-se-chamar-bom-jesus-de-goias
+  nomejoin <- gsub("BOMJESUSGOIAS","BOMJESUS", nomejoin)
+  nomejoin <- gsub("GRACCHOCARDOSO","GRACHOCARDOSO", nomejoin)
 
   #nomejoin <- gsub("Y","I", nomejoin)
   #nomejoin <- gsub("AGUABRANCAAMAPARI","PEDRABRANCAAMAPARI", nomejoin)
@@ -35,7 +39,7 @@ f <- tse_municipios() %>% filter(uf != "ZZ")
 #f$nomejoin <- gsub("O+","O", f$nomejoin)
 f$nomejoin <- id4join(f$nome_municipio_tse)
 
-pop <- populacao_municipios(2020)
+pop <- populacao_municipios(2025)
 #pop$nomejoin <- stri_trans_general(toupper(pop$nome_munic), "Latin-ASCII")
 #pop$nomejoin <- gsub("D[E|O] ","D", pop$nomejoin)
 #pop$nomejoin <- gsub("'|[ ]+|-","", pop$nomejoin)
@@ -57,7 +61,7 @@ if(length(unique( f$z1 )) != df.len) {
   warning(paste0("f: tse: unique uf+nomejoin should be == ", df.len," but is ",length(unique( f$z1 ))))
 }
 if(length(unique( pop$z1 )) != df.len) {
-  warning(paste0("pop: ibge: unique uf+nomejoin should be == ",df.len," but is ",length(unique( df2016$z1 ))))
+  warning(paste0("pop: ibge: unique uf+nomejoin should be == ",df.len," but is ",length(unique( pop$z1 ))))
 }
 
 #$f %>% group_by(z1) %>% count(sum = mean(Sepal.Length))
@@ -94,7 +98,7 @@ municipioIbgeTseMap <- select(merged, uf, cod_municipio, cod_municipio_tse)
 
 library(dplyr)
 library(readr)
-popx <- populacao_municipios(2020) %>% select(nome_munic, cod_municipio)
+popx <- populacao_municipios(2025) %>% select(nome_munic, cod_municipio)
 colnames(popx)[1] <- "nome_municipio_ibge"
 ibgeTseMap <- inner_join(municipioIbgeTseMap, popx, by="cod_municipio")
 colnames(ibgeTseMap)[2] <- "cod_municipio_ibge"
@@ -104,4 +108,4 @@ tsemun <- tse_municipios() %>% select(cod_municipio_tse, nome_municipio_tse)
 #colnames(tsemun)[2] <- "nome_municipio_tse"
 ibgeTseMap <- inner_join(ibgeTseMap, tsemun, by="cod_municipio_tse")
 
-write_csv(ibgeTseMap, file = "doc/ibge-tse-map.csv")
+readr::write_csv(ibgeTseMap, file = "doc/ibge-tse-map.csv")
