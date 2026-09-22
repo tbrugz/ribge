@@ -2,6 +2,7 @@
 % Please edit documentation in R/package.R
 \docType{package}
 \name{ribge}
+\alias{ribge-package}
 \alias{ribge}
 \title{ribge: package for (down)loading data from IBGE.}
 \description{
@@ -12,4 +13,13 @@ This package has no affiliation to IBGE.
 }
 \seealso{
 \url{http://www.ibge.gov.br/} & \url{https://github.com/tbrugz/ribge}
+}
+\author{
+\strong{Maintainer}: Telmo Brugnara \email{tbrugz@gmail.com}
+
+Authors:
+\itemize{
+  \item Telmo Brugnara \email{tbrugz@gmail.com}
+}
+
 }

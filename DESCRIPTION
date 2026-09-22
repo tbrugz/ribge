@@ -4,7 +4,8 @@ Version: 0.0.0.9026
 Authors@R: person("Telmo", "Brugnara", email = "tbrugz@gmail.com", role = c("aut", "cre"))
 Description: Loads data from IBGE - population, GDP, price indexes,
     territory, ...
-Depends: R (>= 2.10)
+Depends: 
+    R (>= 3.5)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -18,4 +19,4 @@ Imports:
     tidyr
 URL: https://github.com/tbrugz/ribge
 BugReports: https://github.com/tbrugz/ribge/issues
-RoxygenNote: 7.2.3
+Config/roxygen2/version: 8.1.0

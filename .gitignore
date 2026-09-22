@@ -7,10 +7,11 @@ ribge_*.tar.gz
 ribge.Rcheck
 tmp
 
+detalhe_votacao_munzona*
+
 docProps/*
 xl/*
 
-*.csv
 *.html
 *.xls
 *.xlsx
